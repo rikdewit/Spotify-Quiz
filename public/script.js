@@ -108,18 +108,24 @@ async function main() {
     let playlist = await getPlaylist(id);
     let tracks = playlist.tracks.items
 
-    let logInfo = (tracks) => {
+    let getInfo = (tracks) => {
+        let info = []
         // console.log(tracks.tracks.items)
-        for (track of tracks) {
+        for (track of tracks.splice(0, 3)) {
             let release_date = track.track.album.release_date;
             let preview_url = track.track.preview_url
-            console.log(preview_url);
-            console.log(release_date);
+            let name = track.track.name;
+            info.push({ "release_date": release_date, "preview_url": preview_url, "name": name });
         }
+        return info
     }
-    logInfo(tracks);
-
-
+    let container = document.querySelector("#music");
+    let info = getInfo(tracks)
+    for (track of info) {
+        let title = document.createElement("h3");
+        title.innerHTML = track.name;
+        container.appendChild(title);
+    }
 
 }
 
