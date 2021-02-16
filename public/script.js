@@ -111,7 +111,7 @@ async function main() {
     let getInfo = (tracks) => {
         let info = []
         // console.log(tracks.tracks.items)
-        for (track of tracks.splice(0, 3)) {
+        for (track of tracks.splice(0, 20)) {
             let release_date = track.track.album.release_date;
             let preview_url = track.track.preview_url
             let name = track.track.name;
@@ -125,6 +125,18 @@ async function main() {
         let title = document.createElement("h3");
         title.innerHTML = track.name;
         container.appendChild(title);
+
+        let a = new Audio(track.preview_url);
+        title.addEventListener("mouseover", (event) => {
+            a.currentTime = 0;
+            a.play();
+        });
+
+        title.addEventListener("mouseleave", (event) => {
+            a.pause();
+        });
+
+
     }
 
 }
