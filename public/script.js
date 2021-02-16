@@ -33,10 +33,10 @@ if (error) {
 } else {
     if (access_token) {
         // render oauth info
-        oauthPlaceholder.innerHTML = oauthTemplate({
-            access_token: access_token,
-            refresh_token: refresh_token
-        });
+        // oauthPlaceholder.innerHTML = oauthTemplate({
+        //     access_token: access_token,
+        //     refresh_token: refresh_token
+        // });
 
         $.ajax({
             url: 'https://api.spotify.com/v1/me',
@@ -45,7 +45,7 @@ if (error) {
             },
             success: function (response) {
                 userData = response;
-                userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                // userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                 console.log(response)
                 main();
                 $('#login').hide();
@@ -67,10 +67,10 @@ function refreshToken() {
         }
     }).done(function (data) {
         access_token = data.access_token;
-        oauthPlaceholder.innerHTML = oauthTemplate({
-            access_token: access_token,
-            refresh_token: refresh_token
-        });
+        // oauthPlaceholder.innerHTML = oauthTemplate({
+        //     access_token: access_token,
+        //     refresh_token: refresh_token
+        // });
     });
 }
 
@@ -111,7 +111,8 @@ async function main() {
     let getInfo = (tracks) => {
         let info = []
         // console.log(tracks.tracks.items)
-        for (track of tracks.splice(0, 20)) {
+        for (track of tracks.splice(0, 10)) {
+            console.log(track)
             let release_date = track.track.album.release_date;
             let preview_url = track.track.preview_url
             let name = track.track.name;
