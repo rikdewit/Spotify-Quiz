@@ -26,6 +26,8 @@ var access_token = params.access_token,
     refresh_token = params.refresh_token,
     error = params.error;
 
+var userData;
+
 if (error) {
     alert('There was an error during the authentication');
 } else {
@@ -42,8 +44,10 @@ if (error) {
                 'Authorization': 'Bearer ' + access_token
             },
             success: function (response) {
+                userData = response;
                 userProfilePlaceholder.innerHTML = userProfileTemplate(response);
                 console.log(response)
+                main();
                 $('#login').hide();
                 $('#loggedin').show();
             }
@@ -70,17 +74,58 @@ function refreshToken() {
     });
 }
 
-function getPlaylists() {
-    $.ajax({
+async function getPlaylists() {
+    let result
+    await $.ajax({
         url: 'https://api.spotify.com/v1/me/playlists',
         headers: {
-            'Authorization': 'Bearer ' + access_token
+            'Authorization': 'Bearer ' + access_token,
         },
         success: function (response) {
-            console.log(response.items[1]);
+            result = response.items
         }
     });
+
+    return result
 }
+
+async function getPlaylist(id) {
+
+    let playlist = await $.ajax({
+        url: `https://api.spotify.com/v1/playlists/${id}?market=${userData.country}`,
+        headers: {
+            'Authorization': 'Bearer ' + access_token,
+        },
+    });
+
+    return playlist
+}
+
+async function main() {
+
+    let playlists = await getPlaylists();
+    let id = playlists[1].id
+    let playlist = await getPlaylist(id);
+    let tracks = playlist.tracks.items
+
+    let logInfo = (tracks) => {
+        // console.log(tracks.tracks.items)
+        for (track of tracks) {
+            let release_date = track.track.album.release_date;
+            let preview_url = track.track.preview_url
+            console.log(preview_url);
+            console.log(release_date);
+        }
+    }
+    logInfo(tracks);
+
+
+
+}
+
+
+
+
 
 
 
