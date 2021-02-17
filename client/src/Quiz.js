@@ -25,11 +25,12 @@ export function Quiz(props) {
     }
     return (
         <div>
-            <h1>
+            <h4>
                 Logged in as {user ? user.display_name : "None"}
-            </h1>
+            </h4>
+            <br></br>
 
-            {track ? <Question number={questionN} track={track} newQuestion={newQuestion} /> : "No track"}
+            {track ? <Question number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} /> : "No track"}
 
         </div>
 

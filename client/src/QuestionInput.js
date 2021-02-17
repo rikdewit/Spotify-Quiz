@@ -5,7 +5,7 @@ export default function QuestionInput(props) {
     return (
         <form onSubmit={props.submit}>
             <label>
-                Name:
+                Year:
           <input type="text" value={props.val} onChange={props.change} />
             </label>
             <input type="submit" value="Submit" />

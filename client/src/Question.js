@@ -10,7 +10,9 @@ export function Question(props) {
     const [audio, setAudio] = useState();
     const [progress, setProgress] = useState();
     const [score, setScore] = useState(0);
-    let timeAllowed = 40;
+    const [currentPoints, setCurrentPoints] = useState(0);
+    const [guess, setGuess] = useState();
+    let timeAllowed = 10;
     const [inputValue, setInputValue] = useState();
 
 
@@ -82,10 +84,17 @@ export function Question(props) {
     function handleSubmit(event) {
         let points = Math.max(0, 10 - Math.abs(inputValue - parseInt(props.track.release_year)));
         if (progress > 0) {
-            setScore(score + points);
-            console.log("you got " + points.toString() + " points!")
+            if (!guess) {
+                setGuess(inputValue);
+                setScore(score + points);
+                setCurrentPoints(points);
+                console.log("you got " + points.toString() + " points!")
+            }
         } else {
-            console.log("too late!")
+            if (guess) {
+                alert("you guessed " + guess)
+            }
+            alert("too late!")
         }
         event.preventDefault();
     };
@@ -99,16 +108,28 @@ export function Question(props) {
         <div className="Question">
             {started ?
                 <div>
-                    <h2>{props.track.name}</h2>
-                    <h2>{props.track.artist}</h2>
-                    <h2>{props.track.release_year}</h2>
-                    <h3>{props.number}</h3>
+                    <h1>Guess the release year of the song</h1>
+                    <br />
+                    {progress == 0 ?
+                        <div>
+                            <h2>{props.track.name}</h2>
+                            <h2>{props.track.artist}</h2>
+                            <h2>{props.track.release_year}</h2>
+                        </div>
+                        :
+                        ""
+
+                    }
+                    < br />
+                    <h3>Song {props.number + 1}/{props.totalNumber}</h3>
                     <h3>Time: {progress}</h3>
                     <ProgressBar progress={progress / timeAllowed} />
                     <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
-                    <button onClick={props.newQuestion}> Next Question</button>
+                    <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Question</button>
                     <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
-                    <h2>{score}</h2>
+                    {guess ? <h2>You guessed {guess}</h2> : ""}
+                    {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
+
                 </div>
                 :
                 <button onClick={() => { setStarted(true); loadAudio(true); }}>Start</button>
