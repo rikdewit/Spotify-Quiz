@@ -28,9 +28,7 @@ export function Quiz(props) {
             <h1>
                 Logged in as {user ? user.display_name : "None"}
             </h1>
-            <h2>
-                {accessToken}
-            </h2>
+
             {track ? <Question number={questionN} track={track} newQuestion={newQuestion} /> : "No track"}
 
         </div>
