@@ -20,7 +20,6 @@ export function Quiz(props) {
 
     function newQuestion() {
         setTrack(tracks[questionN + 1]);
-
         setQuestionN(questionN + 1);
 
     }
@@ -32,7 +31,7 @@ export function Quiz(props) {
             <h2>
                 {accessToken}
             </h2>
-            {track ? <Question number={questionN} track={track} newQuestion={newQuestion} /> : "None"}
+            {track ? <Question number={questionN} track={track} newQuestion={newQuestion} /> : "No track"}
 
         </div>
 
