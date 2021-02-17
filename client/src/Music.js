@@ -1,7 +1,8 @@
-export function Music() {
+export function Music(props) {
+
     return (
         <div id="music">
-            <h1>Music</h1>
+            <h1>{props.user}</h1>
         </div>
     );
 }
