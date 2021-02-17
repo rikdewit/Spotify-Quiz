@@ -9,6 +9,7 @@ export function Quiz(props) {
     const [tracks, setTracks] = useState([]);
     const [questionN, setQuestionN] = useState(0);
     const [track, setTrack] = useState();
+    const [end, setEnd] = useState(false);
 
     useEffect(() => {
         getTrackInfoTop2000(accessToken, user.country).then((trackInfo) => {
@@ -19,8 +20,13 @@ export function Quiz(props) {
     }, [user, accessToken]);
 
     function newQuestion() {
-        setTrack(tracks[questionN + 1]);
-        setQuestionN(questionN + 1);
+        if (questionN + 1 < tracks.length) {
+            setTrack(tracks[questionN + 1]);
+            setQuestionN(questionN + 1);
+        } else {
+            setEnd(true);
+        }
+
 
     }
     return (
@@ -30,8 +36,7 @@ export function Quiz(props) {
             </h4>
             <br></br>
 
-            {track ? <Question number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} /> : "No track"}
-
+            {track ? <Question end={end} number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} /> : "No track"}
         </div>
 
     );

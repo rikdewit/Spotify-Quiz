@@ -28,7 +28,7 @@ npm start
 ### Near
 - [ ] Add playlist selection
 - [ ] Fix uncontrolled component warning
-- [ ] Add end screen
+- [x] Add end screen
 - [ ] Make audio component to clean up question component
 - [ ] Add styling
 - [ ] change URL config for local network accessibility

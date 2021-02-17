@@ -106,33 +106,39 @@ export function Question(props) {
 
     return (
         <div className="Question">
-            {started ?
+            { !props.end ?
                 <div>
-                    <h1>Guess the release year of the song</h1>
-                    <br />
-                    {progress == 0 ?
+                    {started ?
                         <div>
-                            <h2>{props.track.name}</h2>
-                            <h2>{props.track.artist}</h2>
-                            <h2>{props.track.release_year}</h2>
+                            <h1>Guess the release year of the song</h1>
+                            <br />
+                            {progress == 0 ?
+                                <div>
+                                    <h2>{props.track.name}</h2>
+                                    <h2>{props.track.artist}</h2>
+                                    <h2>{props.track.release_year}</h2>
+                                </div>
+                                :
+                                ""
+
+                            }
+                            < br />
+                            <h3>Song {props.number + 1}/{props.totalNumber}</h3>
+                            <h3>Time: {progress}</h3>
+                            <ProgressBar progress={progress / timeAllowed} />
+                            <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
+                            <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Question</button>
+                            <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
+                            {guess ? <h2>You guessed {guess}</h2> : ""}
+                            {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
+
                         </div>
                         :
-                        ""
-
+                        <button onClick={() => { setStarted(true); loadAudio(true); }}>Start</button>
                     }
-                    < br />
-                    <h3>Song {props.number + 1}/{props.totalNumber}</h3>
-                    <h3>Time: {progress}</h3>
-                    <ProgressBar progress={progress / timeAllowed} />
-                    <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
-                    <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Question</button>
-                    <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
-                    {guess ? <h2>You guessed {guess}</h2> : ""}
-                    {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
-
                 </div>
-                :
-                <button onClick={() => { setStarted(true); loadAudio(true); }}>Start</button>
+                : <h2>Your score: {score}</h2>
+
             }
         </div>
 
