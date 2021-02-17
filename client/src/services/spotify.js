@@ -62,6 +62,7 @@ export async function getTrackInfo(access_token, country) {
     let playlist = await getPlaylist(access_token, chill.id, country);
     let tracks = playlist.tracks.items
     let info = getInfo(tracks);
+    console.log(info)
     return info
 }
 

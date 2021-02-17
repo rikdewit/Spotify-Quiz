@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import getHashParams from './services/utils'
 import { getPlayLists, getPlayList, getUser } from './services/spotify'
 import { LoginButton } from './LoginButton'
-import { Music } from './Music'
+import { Quiz } from './Quiz'
 
 export const UserContext = React.createContext({ user: {}, accessToken: {} });
 
 function App() {
-  const [count, setCount] = useState(0);
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [user, setUser] = useState();
@@ -34,7 +33,7 @@ function App() {
 
     <div>
       <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
-        {!user ? <LoginButton /> : <Music />}
+        {!user ? <LoginButton /> : <Quiz />}
       </UserContext.Provider>
     </div>
   );
