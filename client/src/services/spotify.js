@@ -56,25 +56,47 @@ export async function getPlaylist(access_token, id, country) {
     return playlist
 }
 
+export async function getTrackInfo(access_token, country) {
+    let playlists = await getPlaylists(access_token);
+    let chill = playlists[1]
+    let playlist = await getPlaylist(access_token, chill.id, country);
+    let tracks = playlist.tracks.items
+    let info = getInfo(tracks);
+    return info
+}
+
+function getInfo(tracks) {
+    let info = []
+    // console.log(tracks.tracks.items)
+    for (var track of tracks.splice(0, 10)) {
+        console.log(track)
+        let release_date = track.track.album.release_date;
+        let preview_url = track.track.preview_url
+        let name = track.track.name;
+        info.push({ "release_date": release_date, "preview_url": preview_url, "name": name });
+    }
+    return info
+}
+
 // async function main() {
 
-//     let playlists = await getPlaylists();
-//     let id = playlists[1].id
-//     let playlist = await getPlaylist(id);
-//     let tracks = playlist.tracks.items
+    // let playlists = await getPlaylists();
+    // let id = playlists[1].id
+    // let playlist = await getPlaylist(id);
+    // let tracks = playlist.tracks.items
 
-//     let getInfo = (tracks) => {
-//         let info = []
-//         // console.log(tracks.tracks.items)
-//         for (var track of tracks.splice(0, 10)) {
-//             console.log(track)
-//             let release_date = track.track.album.release_date;
-//             let preview_url = track.track.preview_url
-//             let name = track.track.name;
-//             info.push({ "release_date": release_date, "preview_url": preview_url, "name": name });
-//         }
-//         return info
-//     }
+    // let getInfo = (tracks) => {
+    //     let info = []
+    //     // console.log(tracks.tracks.items)
+    //     for (var track of tracks.splice(0, 10)) {
+    //         console.log(track)
+    //         let release_date = track.track.album.release_date;
+    //         let preview_url = track.track.preview_url
+    //         let name = track.track.name;
+    //         info.push({ "release_date": release_date, "preview_url": preview_url, "name": name });
+    //     }
+    //     return info
+    // }
 
 //     let container = document.querySelector("#music");
 //     let info = getInfo(tracks)

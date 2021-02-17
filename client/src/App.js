@@ -4,7 +4,7 @@ import { getPlayLists, getPlayList, getUser } from './services/spotify'
 import { LoginButton } from './LoginButton'
 import { Music } from './Music'
 
-export const UserContext = React.createContext({ user: {} });
+export const UserContext = React.createContext({ user: {}, accessToken: {} });
 
 function App() {
   const [count, setCount] = useState(0);
@@ -33,8 +33,8 @@ function App() {
   return (
 
     <div>
-      <UserContext.Provider value={user}>
-        {!accessToken ? <LoginButton /> : <Music />}
+      <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
+        {!user ? <LoginButton /> : <Music />}
       </UserContext.Provider>
     </div>
   );
