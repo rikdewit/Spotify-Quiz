@@ -1,8 +1,13 @@
+import { UserContext } from './App'
+import React, { useContext } from 'react';
+
 export function Music(props) {
+    const user = useContext(UserContext);
 
     return (
-        <div id="music">
-            <h1>{props.user}</h1>
+        <div>
+            {user ? user.display_name : "None"}
         </div>
+
     );
 }

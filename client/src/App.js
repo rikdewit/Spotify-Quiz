@@ -4,13 +4,13 @@ import { getPlayLists, getPlayList, getUser } from './services/spotify'
 import { LoginButton } from './LoginButton'
 import { Music } from './Music'
 
+export const UserContext = React.createContext({ user: {} });
+
 function App() {
   const [count, setCount] = useState(0);
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [user, setUser] = useState();
-  const [country, setCountry] = useState();
-
 
   useEffect(() => {
     let params = getHashParams();
@@ -21,18 +21,21 @@ function App() {
       console.log('There was an error during the authentication', error)
     } else {
       if (accessToken) {
-        getUser(accessToken).then(userData => {
-          setUser(userData.display_name);
-          setCountry(userData.country);
-        });
-
+        if (!user) {
+          getUser(accessToken).then(userData => {
+            console.log(userData);
+            setUser(userData);
+          });
+        }
       }
     }
   });
   return (
-    <div>
-      {!accessToken ? <LoginButton /> : <Music user={user} />}
 
+    <div>
+      <UserContext.Provider value={user}>
+        {!accessToken ? <LoginButton /> : <Music />}
+      </UserContext.Provider>
     </div>
   );
 }
