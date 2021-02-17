@@ -40,7 +40,12 @@ export function Question(props) {
 
         let a = new Audio(props.track.preview_url);
         a.currentTime = 0;
-        a.volume = 0;
+        if (muted) {
+            a.volume = 0;
+        } else {
+            a.volume = 0.2;
+        }
+
         if (play) {
             a.play();
             setPlaying(true);
