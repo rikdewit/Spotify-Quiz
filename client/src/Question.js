@@ -1,13 +1,18 @@
 import { UserContext } from './App'
 import React, { useContext, useEffect, useState } from 'react'
 import ProgressBar from './ProgressBar'
+import QuestionInput from './QuestionInput'
+
 export function Question(props) {
     const [started, setStarted] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [muted, setMute] = useState(true);
     const [audio, setAudio] = useState();
     const [progress, setProgress] = useState();
+    const [score, setScore] = useState(0);
     let timeAllowed = 40;
+    const [inputValue, setInputValue] = useState();
+
 
     useEffect(() => {
         if (audio) {
@@ -74,12 +79,24 @@ export function Question(props) {
         audio.play();
     }
 
+    function handleSubmit(event) {
+        let points = Math.max(0, 10 - Math.abs(inputValue - parseInt(props.track.release_year)));
+        if (progress > 0) {
+            setScore(score + points);
+            console.log("you got " + points.toString() + " points!")
+        } else {
+            console.log("too late!")
+        }
+        event.preventDefault();
+    };
+
+    function handleChange(event) {
+        setInputValue(event.target.value)
+    }
 
 
     return (
         <div className="Question">
-
-
             {started ?
                 <div>
                     <h2>{props.track.name}</h2>
@@ -88,14 +105,14 @@ export function Question(props) {
                     <h3>{props.number}</h3>
                     <h3>Time: {progress}</h3>
                     <ProgressBar progress={progress / timeAllowed} />
-
+                    <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
                     <button onClick={props.newQuestion}> Next Question</button>
                     <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
+                    <h2>{score}</h2>
                 </div>
                 :
                 <button onClick={() => { setStarted(true); loadAudio(true); }}>Start</button>
             }
-
         </div>
 
     );
