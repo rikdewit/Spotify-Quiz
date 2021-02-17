@@ -1,6 +1,6 @@
 import { UserContext } from './App'
 import React, { useContext, useEffect, useState } from 'react'
-import { getPlaylists, getPlaylist, getUser, getTrackInfo } from './services/spotify'
+import { getPlaylists, getPlaylist, getUser, getTrackInfo, getTrackInfoTop2000 } from './services/spotify'
 import { Question } from './Question'
 
 
@@ -11,7 +11,7 @@ export function Quiz(props) {
     const [track, setTrack] = useState();
 
     useEffect(() => {
-        getTrackInfo(accessToken, user.country).then((trackInfo) => {
+        getTrackInfoTop2000(accessToken, user.country).then((trackInfo) => {
             setTracks(trackInfo);
             setTrack(trackInfo[questionN]);
         })

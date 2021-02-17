@@ -44,15 +44,15 @@ export async function getPlaylists(access_token) {
     return result
 }
 
-export async function getPlaylist(access_token, id, country) {
-
+export async function getPlaylist(access_token, id, country, offset = 0, limit = 20) {
+    let url = `https://api.spotify.com/v1/playlists/${id}/tracks?market=${country}&limit=${limit}&offset=${offset}`
+    console.log(url);
     let playlist = await $.ajax({
-        url: `https://api.spotify.com/v1/playlists/${id}?market=${country}`,
+        url: url,
         headers: {
             'Authorization': 'Bearer ' + access_token,
         },
     });
-
     return playlist
 }
 
@@ -60,7 +60,21 @@ export async function getTrackInfo(access_token, country) {
     let playlists = await getPlaylists(access_token);
     let chill = playlists[1]
     let playlist = await getPlaylist(access_token, chill.id, country);
-    let tracks = playlist.tracks.items
+    let tracks = playlist.items
+    let info = getInfo(tracks);
+    return info
+}
+
+export async function getTrackInfoTop2000(access_token, country,) {
+    let randInt = (min, max) => {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    let offset = randInt(0, 1997 - 10);
+    let playlist = await getPlaylist(access_token, "1DTzz7Nh2rJBnyFbjsH1Mh", country, offset = offset);
+    console.log(playlist)
+    let tracks = playlist.items
     let info = getInfo(tracks);
     return info
 }
@@ -87,44 +101,3 @@ function getInfo(tracks) {
     return info
 }
 
-// async function main() {
-
-    // let playlists = await getPlaylists();
-    // let id = playlists[1].id
-    // let playlist = await getPlaylist(id);
-    // let tracks = playlist.tracks.items
-
-    // let getInfo = (tracks) => {
-    //     let info = []
-    //     // console.log(tracks.tracks.items)
-    //     for (var track of tracks.splice(0, 10)) {
-    //         console.log(track)
-    //         let release_date = track.track.album.release_date;
-    //         let preview_url = track.track.preview_url
-    //         let name = track.track.name;
-    //         info.push({ "release_date": release_date, "preview_url": preview_url, "name": name });
-    //     }
-    //     return info
-    // }
-
-//     let container = document.querySelector("#music");
-//     let info = getInfo(tracks)
-//     for (var track of info) {
-//         let title = document.createElement("h3");
-//         title.innerHTML = track.name;
-//         container.appendChild(title);
-
-//         let a = new Audio(track.preview_url);
-//         title.addEventListener("mouseover", (event) => {
-//             a.currentTime = 0;
-//             a.play();
-//         });
-
-//         title.addEventListener("mouseleave", (event) => {
-//             a.pause();
-//         });
-
-
-//     }
-
-// }
