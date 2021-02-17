@@ -26,18 +26,18 @@ npm start
 ## TODOLIST
 
 ### Near
-- [] Add playlist selection
-- [] Fix uncontrolled component warning
-- [] Add end screen
-- [] Make audio component to clean up question component
-- [] Add styling
-- [] change URL config for local network accessibility
+- [ ] Add playlist selection
+- [ ] Fix uncontrolled component warning
+- [ ] Add end screen
+- [ ] Make audio component to clean up question component
+- [ ] Add styling
+- [ ] change URL config for local network accessibility
 
 ### Far
-- [] Add styling
-- [] Usability tweaks
-- [] Deploy
-- [] Add multiplayer
+- [ ] Add styling
+- [ ] Usability tweaks
+- [ ] Deploy
+- [ ] Add multiplayer
 
 
 
