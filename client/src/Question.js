@@ -4,6 +4,7 @@ import React, { useContext, useEffect, useState } from 'react'
 export function Question(props) {
     const [started, setStarted] = useState(false);
     const [playing, setPlaying] = useState(false);
+    const [muted, setMute] = useState(true);
     const [audio, setAudio] = useState();
     const [progress, setProgress] = useState();
 
@@ -15,12 +16,9 @@ export function Question(props) {
     }, [props.number])
 
 
-
-
     useEffect(() => {
-        console.log("next")
         let interval;
-        let timer = 30;
+        let timer = 40;
         setProgress(timer);
 
         interval = setInterval(() => {
@@ -42,7 +40,7 @@ export function Question(props) {
 
         let a = new Audio(props.track.preview_url);
         a.currentTime = 0;
-        a.volume = 0.2;
+        a.volume = 0;
         if (play) {
             a.play();
             setPlaying(true);
@@ -53,6 +51,16 @@ export function Question(props) {
     function pause() {
         setPlaying(false);
         audio.pause();
+    }
+
+    function mute() {
+        setMute(true);
+        audio.volume = 0;
+    }
+
+    function unMute() {
+        setMute(false);
+        audio.volume = 0.2
     }
 
     function play() {
@@ -71,8 +79,9 @@ export function Question(props) {
                     <h2>{props.track.name}</h2>
                     <h3>{props.number}</h3>
                     <h3>Time: {progress}</h3>
+
                     <button onClick={props.newQuestion}> Next Question</button>
-                    <button onClick={pause}>stop</button>
+                    <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
                 </div>
                 :
                 <button onClick={() => { setStarted(true); loadAudio(true); }}>Start</button>
