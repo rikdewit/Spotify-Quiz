@@ -83,6 +83,8 @@ export function Question(props) {
             {started ?
                 <div>
                     <h2>{props.track.name}</h2>
+                    <h2>{props.track.artist}</h2>
+                    <h2>{props.track.release_year}</h2>
                     <h3>{props.number}</h3>
                     <h3>Time: {progress}</h3>
                     <ProgressBar progress={progress / timeAllowed} />

@@ -62,19 +62,27 @@ export async function getTrackInfo(access_token, country) {
     let playlist = await getPlaylist(access_token, chill.id, country);
     let tracks = playlist.tracks.items
     let info = getInfo(tracks);
-    console.log(info)
     return info
 }
 
 function getInfo(tracks) {
     let info = []
     // console.log(tracks.tracks.items)
-    for (var track of tracks.splice(0, 10)) {
-        console.log(track)
-        let release_date = track.track.album.release_date;
-        let preview_url = track.track.preview_url
-        let name = track.track.name;
-        info.push({ "release_date": release_date, "preview_url": preview_url, "name": name });
+    for (var track of tracks) {
+        let type = track.track.album.album_type
+        if (type == "album" || type == "single") {
+            console.log(track)
+            let release_date = track.track.album.release_date;
+            let preview_url = track.track.preview_url
+            let name = track.track.name;
+            let artist = track.track.artists[0].name;
+            let release_year = release_date.split("-")[0]
+
+            info.push({ "release_year": release_year, "release_date": release_date, "preview_url": preview_url, "name": name, "artist": artist });
+        }
+        if (info.length == 10) {
+            return info;
+        }
     }
     return info
 }
