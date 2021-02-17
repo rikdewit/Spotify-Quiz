@@ -1,12 +1,13 @@
 import { UserContext } from './App'
 import React, { useContext, useEffect, useState } from 'react'
-
+import ProgressBar from './ProgressBar'
 export function Question(props) {
     const [started, setStarted] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [muted, setMute] = useState(true);
     const [audio, setAudio] = useState();
     const [progress, setProgress] = useState();
+    let timeAllowed = 40;
 
     useEffect(() => {
         if (audio) {
@@ -18,7 +19,7 @@ export function Question(props) {
 
     useEffect(() => {
         let interval;
-        let timer = 40;
+        let timer = timeAllowed;
         setProgress(timer);
 
         interval = setInterval(() => {
@@ -84,6 +85,7 @@ export function Question(props) {
                     <h2>{props.track.name}</h2>
                     <h3>{props.number}</h3>
                     <h3>Time: {progress}</h3>
+                    <ProgressBar progress={progress / timeAllowed} />
 
                     <button onClick={props.newQuestion}> Next Question</button>
                     <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
