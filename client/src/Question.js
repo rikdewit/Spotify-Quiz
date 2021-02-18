@@ -15,7 +15,6 @@ export function Question(props) {
     const [guess, setGuess] = useState();
     let timeAllowed = process.env.REACT_APP_TIME_ALLOWED || 10;
     const [inputValue, setInputValue] = useState();
-    console.log(process.env.REACT_APP_MUTE);
 
     useEffect(() => {
         if (audio) {
