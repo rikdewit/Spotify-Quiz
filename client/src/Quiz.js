@@ -12,7 +12,12 @@ export function Quiz(props) {
     const [track, setTrack] = useState();
     const [end, setEnd] = useState(false);
     const [started, setStarted] = useState(false);
-    const [muted, setMuted] = useState(true);
+    let muteState = false;
+    if ('REACT_APP_MUTED' in process.env) {
+        muteState = process.env.REACT_APP_MUTED == 'true';
+    }
+    const [muted, setMuted] = useState(muteState);
+
     const [audios, setAudios] = useState([]);
 
     useEffect(() => {
