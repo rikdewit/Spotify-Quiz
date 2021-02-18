@@ -4,6 +4,7 @@ import ProgressBar from './ProgressBar'
 import QuestionInput from './QuestionInput'
 
 export function Question(props) {
+    const { user, accessToken, refreshToken } = useContext(UserContext);
     const [started, setStarted] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [muted, setMute] = useState(true);
@@ -103,6 +104,11 @@ export function Question(props) {
         setInputValue(event.target.value)
     }
 
+    function playAgain(event) {
+        event.preventDefault();
+        window.location.reload();
+    }
+
 
     return (
         <div className="Question">
@@ -137,7 +143,10 @@ export function Question(props) {
                         <button onClick={() => { setStarted(true); loadAudio(true); }}>Start</button>
                     }
                 </div>
-                : <h2>Your score: {score}</h2>
+                : <div>
+                    <h2>Your score: {score}</h2>
+                    <button onClick={playAgain}>Play Again</button>
+                </div>
 
             }
         </div>
