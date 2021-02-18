@@ -10,6 +10,14 @@ CLIENT_ID = {insert client ID here}
 CLIENT_SECRET = {insert client secret here}
 REDIRECT_URI = http://localhost:8888/callback
 CLIENT_ROOT_URL= http://localhost:3000
+PORT = 8888
+```
+
+Make a .env file in the client directory containing:
+
+```
+REACT_APP_BACKEND = http://localhost:8888
+PORT = 3000
 ```
 
 The frontend and backend are run in seperate shell instances
@@ -23,6 +31,22 @@ cd client
 npm install
 npm start
 ```
+
+## Deploy
+### client
+
+```
+npm run build
+npm run serve
+```
+
+### backend
+```
+npm run serve
+```
+
+
+
 ## TODOLIST
 
 ### Near
