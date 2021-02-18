@@ -23,7 +23,11 @@ export function Quiz(props) {
             let sounds = [];
             for (const t of trackInfo) {
                 let s = new Audio(t.preview_url);
-                s.volume = 0.2;
+                if (muted) {
+                    s.volume = 0;
+                } else {
+                    s.volume = 0.2;
+                }
                 sounds.push(s);
             }
 
@@ -45,10 +49,14 @@ export function Quiz(props) {
 
     function mute() {
         setMuted(true);
+        for (const audio of audios) {
+            audio.volume = 0;
+        }
     }
 
     function unMute() {
         setMuted(false);
+        audios[questionN].volume = 0.2;
     }
 
     function play(n) {
