@@ -7,7 +7,6 @@ export function Question(props) {
     const { user, accessToken, refreshToken } = useContext(UserContext);
     const [started, setStarted] = useState(false);
     const [playing, setPlaying] = useState(false);
-    const [muted, setMute] = useState(true);
     const [audio, setAudio] = useState();
     const [progress, setProgress] = useState();
     const [score, setScore] = useState(0);
@@ -15,13 +14,6 @@ export function Question(props) {
     const [guess, setGuess] = useState();
     let timeAllowed = process.env.REACT_APP_TIME_ALLOWED || 10;
     const [inputValue, setInputValue] = useState();
-
-    useEffect(() => {
-        if (audio) {
-            pause();
-            loadAudio(true);
-        }
-    }, [props.number])
 
 
     useEffect(() => {
@@ -40,46 +32,6 @@ export function Question(props) {
 
     }, [props.number, started]);
 
-
-
-
-    function loadAudio(play) {
-        setPlaying(false);
-
-        let a = new Audio(props.track.preview_url);
-        a.currentTime = 0;
-        if (muted) {
-            a.volume = 0;
-        } else {
-            a.volume = 0.2;
-        }
-
-        if (play) {
-            a.play();
-            setPlaying(true);
-        }
-        setAudio(a);
-    }
-
-    function pause() {
-        setPlaying(false);
-        audio.pause();
-    }
-
-    function mute() {
-        setMute(true);
-        audio.volume = 0;
-    }
-
-    function unMute() {
-        setMute(false);
-        audio.volume = 0.2
-    }
-
-    function play() {
-        setPlaying(true);
-        audio.play();
-    }
 
     function handleSubmit(event) {
         let points = Math.max(0, 10 - Math.abs(inputValue - parseInt(props.track.release_year)));
@@ -133,13 +85,13 @@ export function Question(props) {
                             <ProgressBar progress={progress / timeAllowed} />
                             <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
                             <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Song</button>
-                            <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
+                            <button onClick={props.muted ? props.unMute : props.mute}>{props.muted ? "unmute" : "mute"}</button>
                             {guess ? <h2>You guessed {guess}</h2> : ""}
                             {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
 
                         </div>
                         :
-                        <button onClick={() => { setStarted(true); loadAudio(true); }}>Start</button>
+                        <button onClick={() => { props.start(); setStarted(true); }}>Start</button>
                     }
                 </div>
                 : <div>

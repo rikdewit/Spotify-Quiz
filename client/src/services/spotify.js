@@ -46,7 +46,6 @@ export async function getPlaylists(access_token) {
 
 export async function getPlaylist(access_token, id, country, offset = 0, limit = 20) {
     let url = `https://api.spotify.com/v1/playlists/${id}/tracks?market=${country}&limit=${limit}&offset=${offset}`
-    console.log(url);
     let playlist = await $.ajax({
         url: url,
         headers: {
@@ -73,7 +72,6 @@ export async function getTrackInfoTop2000(access_token, country,) {
     }
     let offset = randInt(0, 1997 - 10);
     let playlist = await getPlaylist(access_token, "1DTzz7Nh2rJBnyFbjsH1Mh", country, offset = offset);
-    console.log(playlist)
     let tracks = playlist.items
     let info = getInfo(tracks);
     return info
@@ -81,11 +79,9 @@ export async function getTrackInfoTop2000(access_token, country,) {
 
 function getInfo(tracks) {
     let info = []
-    // console.log(tracks.tracks.items)
     for (var track of tracks) {
         let type = track.track.album.album_type
         if (type == "album" || type == "single") {
-            console.log(track)
             let release_date = track.track.album.release_date;
             let preview_url = track.track.preview_url
             let name = track.track.name;

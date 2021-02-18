@@ -53,9 +53,9 @@ npm run serve
 - [ ] Add playlist selection
 - [ ] Fix uncontrolled component warning
 - [x] Add end screen
-- [ ] Make audio component to clean up question component
+- [x] Make audio component to clean up question component
 - [ ] Add styling
-- [ ] change URL config for local network accessibility
+- [x] change URL config for local network accessibility (changed back to WSL1)
 
 ### Far
 - [ ] Add styling

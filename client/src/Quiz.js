@@ -2,6 +2,7 @@ import { UserContext } from './App'
 import React, { useContext, useEffect, useState } from 'react'
 import { getPlaylists, getPlaylist, getUser, getTrackInfo, getTrackInfoTop2000 } from './services/spotify'
 import { Question } from './Question'
+import { AudioPlayer } from './AudioPlayer'
 
 
 export function Quiz(props) {
@@ -10,6 +11,9 @@ export function Quiz(props) {
     const [questionN, setQuestionN] = useState(0);
     const [track, setTrack] = useState();
     const [end, setEnd] = useState(false);
+    const [started, setStarted] = useState(false);
+    const [muted, setMuted] = useState(true);
+
 
     useEffect(() => {
         getTrackInfoTop2000(accessToken, user.country).then((trackInfo) => {
@@ -26,9 +30,22 @@ export function Quiz(props) {
         } else {
             setEnd(true);
         }
-
-
     }
+
+    function mute() {
+        setMuted(true);
+    }
+
+    function unMute() {
+        setMuted(false);
+    }
+
+    function start() {
+        setStarted(true);
+        setQuestionN(0);
+    }
+
+
     return (
         <div>
             <h4>
@@ -36,7 +53,8 @@ export function Quiz(props) {
             </h4>
             <br></br>
 
-            {track ? <Question end={end} number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} /> : "No track"}
+            {track ? <Question end={end} number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} start={start} mute={mute} unMute={unMute} muted={muted} /> : "No track"}
+            <AudioPlayer sources={tracks} playing={questionN} started={started} muted={muted} />
         </div>
 
     );
