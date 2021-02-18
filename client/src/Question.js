@@ -133,7 +133,7 @@ export function Question(props) {
                             <h3>Time: {progress}</h3>
                             <ProgressBar progress={progress / timeAllowed} />
                             <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
-                            <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Question</button>
+                            <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Song</button>
                             <button onClick={muted ? () => unMute() : () => mute()}>{muted ? "unmute" : "mute"}</button>
                             {guess ? <h2>You guessed {guess}</h2> : ""}
                             {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
