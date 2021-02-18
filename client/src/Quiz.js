@@ -92,7 +92,6 @@ export function Quiz(props) {
             <br></br>
 
             {track ? <Question end={end} number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} start={start} mute={mute} unMute={unMute} muted={muted} /> : "No track"}
-            {/* <AudioPlayer sources={tracks} playing={questionN} started={started} muted={muted} /> */}
         </div>
 
     );

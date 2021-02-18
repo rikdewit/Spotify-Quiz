@@ -60,7 +60,7 @@ npm run serve
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
-- [ ] Deploy
+- [x] Deploy
 - [ ] Add multiplayer
 
 
