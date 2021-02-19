@@ -41,6 +41,7 @@ html body{
 }
 .Spotify:focus{
     outline: 0;
+    background-color:#1ed760;
 }
 
 a.Spotify, a.Spotify:hover, a.Spotify:focus, a.Spotify:active {
