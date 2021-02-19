@@ -5,7 +5,7 @@ import { LoginButton } from './LoginButton'
 import { Quiz } from './Quiz'
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import LuxonUtils from '@date-io/luxon';
-import Settings from 'luxon/src/settings.js'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
 export const UserContext = React.createContext({ user: {}, accessToken: {} });
 
@@ -31,14 +31,31 @@ function App() {
       }
     }
   });
+
+  const theme = createMuiTheme({
+    palette: {
+      primary: {
+        main: '#1db954',
+      },
+      secondary: {
+        // main: '#ffff',
+        main: '#191414',
+
+
+      }
+    }
+  });
   return (
 
     <div>
-      <MuiPickersUtilsProvider utils={LuxonUtils}>
-        <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
-          {!user ? <LoginButton /> : <Quiz />}
-        </UserContext.Provider>
-      </MuiPickersUtilsProvider>
+      <MuiThemeProvider theme={theme}>
+        <MuiPickersUtilsProvider utils={LuxonUtils}>
+          <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
+            {!user ? <LoginButton /> : <Quiz />}
+          </UserContext.Provider>
+        </MuiPickersUtilsProvider>
+      </MuiThemeProvider>
+
 
     </div>
   );

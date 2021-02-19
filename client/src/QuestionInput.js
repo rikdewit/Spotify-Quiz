@@ -5,10 +5,9 @@ import { DateTime } from 'luxon'
 export default function QuestionInput(props) {
 
     return (
-        <form onSubmit={props.submit}>
-
-
+        <div>
             <DatePicker
+                color="primary"
                 label="year"
                 views={["year"]}
                 value={props.val}
@@ -21,8 +20,8 @@ export default function QuestionInput(props) {
                 fullWidth={true}
             />
             <br></br>
-            <input className="Spotify" type="submit" value="Submit" />
 
-        </form>
+            <button className="Spotify" onClick={props.submit}>Submit</button>
+        </div>
     );
 }

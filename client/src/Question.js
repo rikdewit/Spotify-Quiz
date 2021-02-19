@@ -1,6 +1,5 @@
 import { UserContext } from './App'
 import React, { useContext, useEffect, useState } from 'react'
-import ProgressBar from './ProgressBar'
 import QuestionInput from './QuestionInput'
 import { LinearProgress } from '@material-ui/core'
 import { DateTime } from 'luxon'
@@ -93,7 +92,11 @@ export function Question(props) {
                             <h3>Song {props.number + 1}/{props.totalNumber}</h3>
                             <h3>Time: {progress}</h3>
                             {/* <ProgressBar progress={progress / timeAllowed} /> */}
-                            <LinearProgress variant="determinate" value={100 * progress / timeAllowed} />
+                            <LinearProgress
+                                color="primary"
+                                variant="determinate"
+                                value={100 * progress / timeAllowed}
+                            />
 
                             <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
                             <button className="Spotify" onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Song</button>
