@@ -55,7 +55,9 @@ npm run serve
 - [x] Add end screen
 - [x] Make audio component to clean up question component
 - [ ] Add styling
-- [x] change URL config for local network accessibility (changed back to WSL1)
+- [x] Change URL config for local network accessibility (changed back to WSL1)
+- [ ] Fix displaying track info
+- [ ] Fix auto submit after time and saving score on next question
 
 ### Far
 - [ ] Add styling
