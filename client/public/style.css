@@ -4,16 +4,26 @@ html body{
     display: flex;
     justify-content: center;
     font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
 }
 
 .container{
     width:fit-content;
+    box-shadow: #191414;
 }
 
 h1{
-    margin: 30px;
+    /* margin: 30px; */
+    margin-top: 0px;
 }
 
+.card{
+    box-shadow: 0px 0px 100px #262626b1;
+    margin: 15px;
+    padding: 30px;
+    border-width: 0;
+    border-radius: 10px;
+}
 .Picker{
     align-items: center;
     width: 100px;
