@@ -10,6 +10,10 @@ html body{
     width:fit-content;
 }
 
+h1{
+    margin: 30px;
+}
+
 .Picker{
     align-items: center;
     width: 100px;
