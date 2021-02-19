@@ -87,8 +87,9 @@ function getInfo(tracks) {
             let name = track.track.name;
             let artist = track.track.artists[0].name;
             let release_year = release_date.split("-")[0]
+            let image = track.track.album.images[1].url
 
-            info.push({ "release_year": release_year, "release_date": release_date, "preview_url": preview_url, "name": name, "artist": artist });
+            info.push({ "release_year": release_year, "release_date": release_date, "preview_url": preview_url, "name": name, "artist": artist, "image": image });
         }
         if (info.length == 10) {
             return info;
