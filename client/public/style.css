@@ -32,6 +32,10 @@ h1{
     margin-bottom: 20px;
 }
 
+.MuiLinearProgress-root	{
+    width: 50vw;
+}
+
 .Spotify{
     margin: 5px;
     color: white;
