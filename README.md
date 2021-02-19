@@ -51,14 +51,14 @@ npm run serve
 
 ### Near
 - [ ] Add playlist selection
-- [ ] Fix uncontrolled component warning
+- [x] Fix uncontrolled component warning
 - [x] Add end screen
 - [x] Make audio component to clean up question component
 - [ ] Add styling
 - [x] Change URL config for local network accessibility (changed back to WSL1)
-- [ ] Fix displaying track info
-- [ ] Fix auto submit after time and saving score on next question
-
+- [x] Fix displaying track info
+- [x] Fix auto submit after time and saving score on next question
+- [ ] Fix DatePicker after time
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
