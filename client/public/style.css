@@ -1,6 +1,5 @@
 html body{
-    /* font-size: 16px; */
-    background-color: rgb(233, 237, 229) !important;
+    background-color: white;
     color: #191414;
     display: flex;
     justify-content: center;
