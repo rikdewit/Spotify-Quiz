@@ -2,6 +2,7 @@ import { UserContext } from './App'
 import React, { useContext, useEffect, useState } from 'react'
 import ProgressBar from './ProgressBar'
 import QuestionInput from './QuestionInput'
+import { LinearProgress } from '@material-ui/core'
 
 
 export function Question(props) {
@@ -79,12 +80,13 @@ export function Question(props) {
                                 </div>
                                 :
                                 ""
-
                             }
                             < br />
                             <h3>Song {props.number + 1}/{props.totalNumber}</h3>
                             <h3>Time: {progress}</h3>
-                            <ProgressBar progress={progress / timeAllowed} />
+                            {/* <ProgressBar progress={progress / timeAllowed} /> */}
+                            <LinearProgress variant="determinate" value={100 * progress / timeAllowed} />
+
                             <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
                             <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Song</button>
                             <button onClick={props.muted ? props.unMute : props.mute}>{props.muted ? "unmute" : "mute"}</button>
