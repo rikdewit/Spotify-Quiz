@@ -33,7 +33,7 @@ h1{
 }
 
 .MuiLinearProgress-root	{
-    width: 50vw;
+    min-width: 50vw;
 }
 
 .Cover{
