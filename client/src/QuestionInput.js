@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { DatePicker } from '@material-ui/pickers';
+import { DateTime } from 'luxon'
 
 export default function QuestionInput(props) {
-    const [selectedDate, handleDateChange] = useState(new Date());
 
     return (
         <form onSubmit={props.submit}>
@@ -18,8 +18,10 @@ export default function QuestionInput(props) {
                 variant="dialog"
                 autoOk={true}
                 className="Picker"
+                fullWidth={true}
             />
-            <input type="submit" value="Submit" />
+            <br></br>
+            <input className="Spotify" type="submit" value="Submit" />
 
         </form>
     );

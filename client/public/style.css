@@ -15,3 +15,29 @@ html{
 
 .Picker{
 }
+
+.Spotify{
+    margin: 5px;
+    color: white;
+    background-color: #1db954;
+    border-width: 0px;;
+    border-radius: 30px;
+    padding: 18px 48px 16px;
+    font-size: 20px;
+    transition-property: background-color,border-color,color,box-shadow,filter;
+    transition-duration: .3s;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.Spotify:hover{
+    background-color:#1ed760;
+}
+
+.Spotify:active{
+    background-color: #1aa34a;
+}
+.Spotify:focus{
+    outline: 0;
+}

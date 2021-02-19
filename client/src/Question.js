@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import ProgressBar from './ProgressBar'
 import QuestionInput from './QuestionInput'
 import { LinearProgress } from '@material-ui/core'
+import { DateTime } from 'luxon'
 
 
 export function Question(props) {
@@ -15,7 +16,7 @@ export function Question(props) {
     const [currentPoints, setCurrentPoints] = useState(0);
     const [guess, setGuess] = useState();
     let timeAllowed = process.env.REACT_APP_TIME_ALLOWED || 10;
-    const [inputValue, setInputValue] = useState();
+    const [inputValue, setInputValue] = useState(DateTime.now());
 
 
     useEffect(() => {
@@ -36,7 +37,9 @@ export function Question(props) {
 
 
     function handleSubmit(event) {
-        let value = inputValue.year
+        let value = inputValue.year;
+
+        console.log(inputValue.year)
         let points = Math.max(0, 10 - Math.abs(value - parseInt(props.track.release_year)));
         if (progress > 0) {
             if (!guess) {
@@ -79,7 +82,12 @@ export function Question(props) {
                                     <h2>{props.track.release_year}</h2>
                                 </div>
                                 :
-                                ""
+                                <div>
+                                    <h2>?</h2>
+                                    <h2>?</h2>
+                                    <h2>?</h2>
+
+                                </div>
                             }
                             < br />
                             <h3>Song {props.number + 1}/{props.totalNumber}</h3>
@@ -88,19 +96,19 @@ export function Question(props) {
                             <LinearProgress variant="determinate" value={100 * progress / timeAllowed} />
 
                             <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
-                            <button onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Song</button>
-                            <button onClick={props.muted ? props.unMute : props.mute}>{props.muted ? "unmute" : "mute"}</button>
+                            <button className="Spotify" onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Song</button>
+                            <button className="Spotify" onClick={props.muted ? props.unMute : props.mute}>{props.muted ? "unmute" : "mute"}</button>
                             {guess ? <h2>You guessed {guess}</h2> : ""}
                             {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
 
                         </div>
                         :
-                        <button onClick={() => { props.start(); setStarted(true); }}>Start</button>
+                        <button className="Spotify" onClick={() => { props.start(); setStarted(true); }}>Start</button>
                     }
                 </div>
                 : <div>
                     <h2>Your score: {score}</h2>
-                    <button onClick={playAgain}>Play Again</button>
+                    <button className="Spotify" onClick={playAgain}>Play Again</button>
                 </div>
 
             }
