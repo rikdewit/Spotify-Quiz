@@ -3,6 +3,8 @@ import getHashParams from './services/utils'
 import { getPlayLists, getPlayList, getUser } from './services/spotify'
 import { LoginButton } from './LoginButton'
 import { Quiz } from './Quiz'
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
+import LuxonUtils from '@date-io/luxon';
 
 export const UserContext = React.createContext({ user: {}, accessToken: {} });
 
@@ -32,9 +34,12 @@ function App() {
   return (
 
     <div>
-      <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
-        {!user ? <LoginButton /> : <Quiz />}
-      </UserContext.Provider>
+      <MuiPickersUtilsProvider utils={LuxonUtils}>
+        <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
+          {!user ? <LoginButton /> : <Quiz />}
+        </UserContext.Provider>
+      </MuiPickersUtilsProvider>
+
     </div>
   );
 }
