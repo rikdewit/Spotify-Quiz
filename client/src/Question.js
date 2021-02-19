@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import QuestionInput from './QuestionInput'
 import { LinearProgress } from '@material-ui/core'
 import { DateTime } from 'luxon'
+import { timePickerDefaultProps } from '@material-ui/pickers/constants/prop-types'
 
 
 export function Question(props) {
@@ -10,55 +11,80 @@ export function Question(props) {
     const [started, setStarted] = useState(false);
     const [playing, setPlaying] = useState(false);
     const [audio, setAudio] = useState();
-    const [progress, setProgress] = useState();
     const [score, setScore] = useState(0);
     const [currentPoints, setCurrentPoints] = useState(0);
     const [guess, setGuess] = useState();
+    const [lockedIn, setLockedIn] = useState(false);
     let timeAllowed = process.env.REACT_APP_TIME_ALLOWED || 10;
+    const [progress, setProgress] = useState(timeAllowed);
+    const [timer, setTimer] = useState(timeAllowed);
+    const [paused, setPaused] = useState(false);
     const [inputValue, setInputValue] = useState(DateTime.now());
 
 
     useEffect(() => {
-        let interval;
-        let timer = timeAllowed;
-        setProgress(timer);
-
-        interval = setInterval(() => {
-            if (timer > 0 && started) {
-                timer--;
-                setProgress(timer);
-            }
-        }, 1000);
-
-        return () => { clearInterval(interval); };
-
+        if (started) {
+            startTimer();
+        }
     }, [props.number, started]);
 
+    function startTimer() {
+        setPaused(false);
+        setTimer(timeAllowed);
+        setTimeout(() => {
+            setTimer(timeAllowed - 1);
+        }, 1000)
+    }
 
-    function handleSubmit(event) {
-        let value = inputValue.year;
+    useEffect(() => {
+        if (started && !paused) {
+            console.log(timer)
+            setProgress(timer);
+            if (timer > 0) {
+                setTimeout(() => {
+                    setTimer(timer - 1)
+                }, 1000)
+            }
+        }
+        if (paused) {
+            setTimer(timeAllowed);
+        }
 
-        console.log(inputValue.year)
+    }, [timer])
+
+
+
+    useEffect(() => {
+        if (progress == 0) {
+            lockIn();
+        }
+    }, [progress])
+
+    function lockIn() {
+        if (!lockedIn) {
+            setGuess(inputValue);
+            setScore(score + currentPoints);
+            setLockedIn(true);
+            setPaused(true);
+            console.log("locked in")
+        }
+
+    }
+    function handleSubmit(change) {
+        let value = change.year;
+        setInputValue(change)
+        console.log(change)
         let points = Math.max(0, 10 - Math.abs(value - parseInt(props.track.release_year)));
         if (progress > 0) {
-            if (!guess) {
-                setGuess(value);
-                setScore(score + points);
-                setCurrentPoints(points);
-                console.log("you got " + points.toString() + " points!")
-            }
+            setGuess(value);
+            setCurrentPoints(points);
+            console.log("you got " + points.toString() + " points!")
+
         } else {
-            if (guess) {
-                alert("you guessed " + guess)
-            }
-            alert("too late!")
+            alert("too late!");
         }
-        event.preventDefault();
     };
 
-    function handleChange(value) {
-        setInputValue(value)
-    }
 
     function playAgain(event) {
         event.preventDefault();
@@ -74,7 +100,13 @@ export function Question(props) {
                         <div>
                             <div className="card">
 
-                                {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
+                                {progress == 0 ? <div>
+                                    <h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div>
+                                    :
+                                    <div>
+                                        <h2>Your score: {score}</h2>
+                                    </div>
+                                }
 
                                 <br />
                                 {progress == 0 ?
@@ -93,19 +125,38 @@ export function Question(props) {
                                 }
                                 < br />
                                 <h3>Song {props.number + 1}/{props.totalNumber}</h3>
-                                <h3>Time: {progress}</h3>
-                                {/* <ProgressBar progress={progress / timeAllowed} /> */}
                                 <LinearProgress
                                     color="primary"
                                     variant="determinate"
                                     value={100 * progress / timeAllowed}
                                 />
 
-                                <QuestionInput change={handleChange} val={inputValue} submit={handleSubmit} />
-                                <button className="Spotify" onClick={() => { props.newQuestion(); setCurrentPoints(0); setGuess(null) }}> Next Song</button>
-                                <button className="Spotify" onClick={props.muted ? props.unMute : props.mute}>{props.muted ? "unmute" : "mute"}</button>
-                                {guess ? <h2>You guessed {guess}</h2> : ""}
-                                {progress == 0 ? <div><h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div> : <h2>Your score: {score - currentPoints}</h2>}
+                                <QuestionInput val={inputValue} submit={handleSubmit} />
+
+
+                                {lockedIn ?
+                                    <button className="Spotify" onClick={() => {
+                                        props.newQuestion();
+                                        setCurrentPoints(0);
+                                        setProgress(timeAllowed);
+                                        setGuess(inputValue);
+                                        setLockedIn(false);
+                                    }}>next</button>
+                                    :
+                                    <button className="Spotify" onClick={() => {
+                                        lockIn();
+                                        setProgress(0);
+                                    }}>lock in</button>
+                                }
+
+
+                                <button
+                                    className="Spotify"
+                                    onClick={
+                                        props.muted ? props.unMute : props.mute}>
+
+                                    {props.muted ? "unmute" : "mute"}
+                                </button>
                             </div>
                         </div>
                         :

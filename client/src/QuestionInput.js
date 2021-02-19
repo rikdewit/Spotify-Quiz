@@ -12,7 +12,7 @@ export default function QuestionInput(props) {
                     label="year"
                     views={["year"]}
                     value={props.val}
-                    onChange={props.change}
+                    onChange={props.submit}
                     minDate={new Date("1910-01-01")}
                     maxDate={new Date()}
                     variant="dialog"
@@ -22,7 +22,7 @@ export default function QuestionInput(props) {
             </div>
             <br></br>
 
-            <button className="Spotify" onClick={props.submit}>Submit</button>
+            {/* <button className="Spotify" onClick={props.submit}>Submit</button> */}
         </div>
     );
 }
