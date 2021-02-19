@@ -100,8 +100,11 @@ export function Question(props) {
                         <div>
                             <div className="card">
 
-                                {progress == 0 ? <div>
-                                    <h2>You got {currentPoints} points!</h2> <h2>Your score: {score}</h2></div>
+                                {progress == 0 ?
+                                    <div>
+                                        <h2>Your score: {score}</h2>
+                                        <h2>You got {currentPoints} points!</h2>
+                                    </div>
                                     :
                                     <div>
                                         <h2>Your score: {score}</h2>
