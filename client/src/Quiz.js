@@ -61,7 +61,9 @@ export function Quiz(props) {
 
     function unMute() {
         setMuted(false);
-        audios[questionN].volume = 0.2;
+        for (const audio of audios) {
+            audio.volume = 0.2
+        }
     }
 
     function play(n) {
@@ -78,7 +80,7 @@ export function Quiz(props) {
     function start() {
         setStarted(true);
         setQuestionN(0);
-        play();
+        play(0);
     }
 
 
