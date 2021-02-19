@@ -6,26 +6,21 @@ export default function QuestionInput(props) {
 
     return (
         <form onSubmit={props.submit}>
-            <label>
-                Year:
-          <input type="text" value={props.val} onChange={props.change} />
-            </label>
-            <input type="submit" value="Submit" />
+
 
             <DatePicker
                 label="year"
                 views={["year"]}
-                value={selectedDate}
-                onChange={handleDateChange}
+                value={props.val}
+                onChange={props.change}
                 minDate={new Date("1910-01-01")}
                 maxDate={new Date()}
                 variant="dialog"
                 autoOk={true}
-                // fullWidth={true}
                 className="Picker"
-
-
             />
+            <input type="submit" value="Submit" />
+
         </form>
     );
 }

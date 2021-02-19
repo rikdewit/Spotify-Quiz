@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import ProgressBar from './ProgressBar'
 import QuestionInput from './QuestionInput'
 
+
 export function Question(props) {
     const { user, accessToken, refreshToken } = useContext(UserContext);
     const [started, setStarted] = useState(false);
@@ -34,10 +35,11 @@ export function Question(props) {
 
 
     function handleSubmit(event) {
-        let points = Math.max(0, 10 - Math.abs(inputValue - parseInt(props.track.release_year)));
+        let value = inputValue.year
+        let points = Math.max(0, 10 - Math.abs(value - parseInt(props.track.release_year)));
         if (progress > 0) {
             if (!guess) {
-                setGuess(inputValue);
+                setGuess(value);
                 setScore(score + points);
                 setCurrentPoints(points);
                 console.log("you got " + points.toString() + " points!")
@@ -51,8 +53,8 @@ export function Question(props) {
         event.preventDefault();
     };
 
-    function handleChange(event) {
-        setInputValue(event.target.value)
+    function handleChange(value) {
+        setInputValue(value)
     }
 
     function playAgain(event) {
