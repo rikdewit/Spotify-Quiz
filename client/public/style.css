@@ -41,3 +41,8 @@ html{
 .Spotify:focus{
     outline: 0;
 }
+
+a.Spotify, a.Spotify:hover, a.Spotify:focus, a.Spotify:active {
+    text-decoration: none;
+    color: white;
+}

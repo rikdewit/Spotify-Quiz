@@ -54,6 +54,7 @@ export function Quiz(props) {
 
     function mute() {
         setMuted(true);
+        console.log("mute")
         for (const audio of audios) {
             audio.volume = 0;
         }
@@ -75,6 +76,7 @@ export function Quiz(props) {
         } else {
             audios[questionN].play();
         }
+
     }
 
     function start() {
