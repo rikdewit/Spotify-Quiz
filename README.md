@@ -54,7 +54,7 @@ npm run serve
 - [x] Fix uncontrolled component warning
 - [x] Add end screen
 - [x] Make audio component to clean up question component
-- [ ] Add styling
+- [x] Add styling
 - [x] Change URL config for local network accessibility (changed back to WSL1)
 - [x] Fix displaying track info
 - [x] Fix auto submit after time and saving score on next question
