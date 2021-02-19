@@ -1,6 +1,8 @@
-
+html{
+    font-size: 16px;
+}
 .ProgressBar{
-    width: 40vw;
+    width: 100%;
     height: 40px;
     background-color: grey;
 }
@@ -11,6 +13,5 @@
     background-color: blue;
 }
 
-.YearPicker button{
-    background-color: red;
+.Picker{
 }

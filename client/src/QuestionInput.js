@@ -19,8 +19,11 @@ export default function QuestionInput(props) {
                 onChange={handleDateChange}
                 minDate={new Date("1910-01-01")}
                 maxDate={new Date()}
-                animateYearScrolling={true}
                 variant="dialog"
+                autoOk={true}
+                // fullWidth={true}
+                className="Picker"
+
 
             />
         </form>
