@@ -60,6 +60,7 @@ npm run serve
 - [x] Fix auto submit after time and saving score on next question
 - [ ] Fix DatePicker after time
 - [ ] Add Play button to replay guessed song
+- [ ] Fix lock in without picking date
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
