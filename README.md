@@ -61,6 +61,7 @@ npm run serve
 - [ ] Fix DatePicker after time
 - [ ] Add Play button to replay guessed song
 - [ ] Fix lock in without picking date
+- [ ] Add donate button
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
