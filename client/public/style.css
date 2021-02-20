@@ -96,6 +96,18 @@ h1{
     margin-top: 0px;
 }
 
+
+.scoreContainer{
+    width: fit-content;
+}
+
+.Points{
+    font-size: 1rem;
+    color: #1db954;
+    float: right;
+    margin-left: 2px;
+}
+
 .Spotify{
     margin: 5px;
     color: white;
