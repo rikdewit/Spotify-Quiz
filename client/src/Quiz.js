@@ -92,7 +92,7 @@ export function Quiz(props) {
     return (
         <div>
             <div className="card flexCenter">
-                <h3>
+                <h3 className="Username">
                     {user ? user.display_name : "Login error"}
                 </h3>
                 <BuyCoffee />
