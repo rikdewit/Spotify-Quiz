@@ -119,14 +119,14 @@ export function Question(props) {
                                 {progress == 0 ?
                                     <div className="scoreContainer">
 
-                                        <h2>{score}
+                                        <h2>Score: {score}
                                             <div className="Points">+{currentPoints} </div>
                                         </h2>
                                     </div>
 
                                     :
                                     <div className="scoreContainer">
-                                        <h2>{score}</h2>
+                                        <h2>Score: {score}</h2>
                                     </div>
                                 }
                                 < br />
