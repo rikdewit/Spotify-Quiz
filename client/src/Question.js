@@ -115,7 +115,7 @@ export function Question(props) {
                                         <h2>?</h2>
                                     </div>
                                 }
-
+                                <br />
                                 {progress == 0 ?
                                     <div className="scoreContainer">
 
