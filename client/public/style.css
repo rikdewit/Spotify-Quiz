@@ -1,10 +1,28 @@
 html body{
+    --primary: #1db954;
+    --secondary: #191414;
     background-color: white;
     color: #191414;
     display: flex;
     justify-content: center;
     font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
+
+}
+
+.SpotifyLogo{
+    margin-right: 20px;
+    width: 80px;
+}
+
+.Username{
+    font-size: 1.5rem;
+    color: var(--secondary);
+}
+
+.TopTitle{
+    font-size: 3rem;
+    margin-bottom: 0;
 }
 
 .flexCenterColumn{
@@ -49,9 +67,7 @@ h1{
     margin-bottom: 20px;
 }
 
-.Username{
-    margin-top:0;
-}
+
 
 .MuiLinearProgress-root	{
     min-width: 50vw;
