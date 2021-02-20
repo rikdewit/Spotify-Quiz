@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import QuestionInput from './QuestionInput'
 import { LinearProgress } from '@material-ui/core'
 import { DateTime } from 'luxon'
-import { timePickerDefaultProps } from '@material-ui/pickers/constants/prop-types'
+import BuyCoffee from './BuyCoffee'
 
 
 export function Question(props) {
@@ -162,15 +162,15 @@ export function Question(props) {
                             </div>
                         </div>
                         :
-                        <div>
+                        <div className="card flexCenterColumn">
                             <h1>Guess the release year of the song</h1>
-
-                            <button className="Spotify" onClick={() => { props.start(); setStarted(true); }}>Start</button>
+                            <button className="Spotify start" onClick={() => { props.start(); setStarted(true); }}>Start</button>
                         </div>
                     }
                 </div>
-                : <div>
-                    <h2>Your score: {score}</h2>
+                : <div className="card flexCenterColumn">
+                    <h2>Your score</h2>
+                    <h1>{score}</h1>
                     <button className="Spotify" onClick={playAgain}>Play Again</button>
                 </div>
 

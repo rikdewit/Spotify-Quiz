@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import { getPlaylists, getPlaylist, getUser, getTrackInfo, getTrackInfoTop2000 } from './services/spotify'
 import { Question } from './Question'
 import { AudioPlayer } from './AudioPlayer'
+import BuyCoffee from './BuyCoffee'
 
 
 export function Quiz(props) {
@@ -90,10 +91,12 @@ export function Quiz(props) {
 
     return (
         <div>
-            <h4>
-                Logged in as {user ? user.display_name : "None"}
-            </h4>
-            <br></br>
+            <div className="card flexCenter">
+                <h3>
+                    {user ? user.display_name : "Login error"}
+                </h3>
+                <BuyCoffee />
+            </div>
 
             {track ? <Question end={end} number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} start={start} mute={mute} unMute={unMute} muted={muted} /> : "No track"}
         </div>
