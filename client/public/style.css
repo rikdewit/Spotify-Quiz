@@ -101,6 +101,10 @@ h1{
     width: fit-content;
 }
 
+.scoreContainer h2{
+    margin: 0;
+}
+
 .Points{
     font-size: 1rem;
     color: #1db954;

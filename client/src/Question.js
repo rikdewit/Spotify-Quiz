@@ -101,6 +101,7 @@ export function Question(props) {
                             <div className="card">
 
                                 <br />
+                                <br />
                                 {progress == 0 ?
                                     <div className="TrackInfo">
                                         <img className="Cover" src={props.track.image}></img>
@@ -124,7 +125,7 @@ export function Question(props) {
                                     </div>
 
                                     :
-                                    <div>
+                                    <div className="scoreContainer">
                                         <h2>{score}</h2>
                                     </div>
                                 }
