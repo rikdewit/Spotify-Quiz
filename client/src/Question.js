@@ -156,13 +156,13 @@ export function Question(props) {
                                 }
 
 
-                                <button
+                                {/* <button
                                     className="Spotify"
                                     onClick={
                                         props.muted ? props.unMute : props.mute}>
 
                                     {props.muted ? "unmute" : "mute"}
-                                </button>
+                                </button> */}
                             </div>
                         </div>
                         :
