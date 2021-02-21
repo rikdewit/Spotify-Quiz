@@ -50,6 +50,10 @@ function App() {
     <div>
       <MuiThemeProvider theme={theme}>
         <MuiPickersUtilsProvider utils={LuxonUtils}>
+          <div className="card flexCenterRow TopBar">
+            <img className="SpotifyLogo" src="/img/Spotify_Icon_RGB_Green.png"></img>
+            <h1 className="TopTitle" >SpotifyQuiz</h1>
+          </div>
           <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
             {!user ? <LoginButton /> : <Quiz />}
           </UserContext.Provider>

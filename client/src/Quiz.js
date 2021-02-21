@@ -91,12 +91,6 @@ export function Quiz(props) {
 
     return (
         <div>
-            <div className="card flexCenterRow TopBar">
-                <img className="SpotifyLogo" src="/img/Spotify_Icon_RGB_Green.png"></img>
-                <h1 className="TopTitle" >SpotifyQuiz</h1>
-
-            </div>
-
             {track ? <Question end={end} number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} start={start} mute={mute} unMute={unMute} muted={muted} /> : "No track"}
             <div className="card Bottom flexCenterColumn">
 
