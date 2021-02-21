@@ -62,6 +62,9 @@ npm run serve
 - [ ] Add Play button to replay guessed song
 - [ ] Fix lock in without picking date
 - [ ] Add donate button
+- [ ] Add highscore board
+- [ ] Add Score explanation
+- [ ] Bigger Year input
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
