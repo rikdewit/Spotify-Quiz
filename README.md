@@ -61,10 +61,12 @@ npm run serve
 - [ ] Fix DatePicker after time
 - [ ] Add Play button to replay guessed song
 - [ ] Fix lock in without picking date
-- [ ] Add donate button
+- [x] Add donate button
 - [ ] Add highscore board
 - [ ] Add Score explanation
 - [ ] Bigger Year input
+- [ ] Fix less than 10 songs bug
+- [ ] Fix fast next timer bug
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
