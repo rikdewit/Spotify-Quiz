@@ -67,6 +67,7 @@ npm run serve
 - [ ] Bigger Year input
 - [ ] Fix less than 10 songs bug
 - [ ] Fix fast next timer bug
+- [ ] Add share button
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
