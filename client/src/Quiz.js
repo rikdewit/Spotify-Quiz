@@ -4,6 +4,7 @@ import { getPlaylists, getPlaylist, getUser, getTrackInfo, getTrackInfoTop2000 }
 import { Question } from './Question'
 import { AudioPlayer } from './AudioPlayer'
 import BuyCoffee from './BuyCoffee'
+import Tikkie from './Tikkie'
 
 
 export function Quiz(props) {
@@ -98,6 +99,7 @@ export function Quiz(props) {
                     {user ? user.display_name : "Login error"}
                 </h3>
                 <BuyCoffee />
+                <Tikkie />
 
             </div>
         </div>

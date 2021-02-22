@@ -1,5 +1,7 @@
 html body{
     --primary: #1db954;
+    --primary-hover: #1ed760;
+    --primary-active: #1aa34a;
     --secondary: #191414;
     background-color: white;
     color: #191414;
@@ -163,4 +165,27 @@ h1{
 a.Spotify, a.Spotify:hover, a.Spotify:focus, a.Spotify:active {
     text-decoration: none;
     color: white;
+}
+
+.Tikkie{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10.8px;
+    background-color: var(--primary);
+    width: 235px;
+    height: 50px;
+}
+
+.Tikkie:hover{
+    background-color: var(--primary-hover)
+}
+
+.Tikkie:active{
+    background-color: var(--primary-active)
+}
+
+.Tikkie:focus{
+    outline: 0;
+    background-color: var(--primary-active);
 }

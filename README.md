@@ -68,6 +68,8 @@ npm run serve
 - [ ] Fix less than 10 songs bug
 - [ ] Fix fast next timer bug
 - [ ] Add share button
+- [x] Tikkie
+- [ ] BuyCoffee button styling hover active
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
