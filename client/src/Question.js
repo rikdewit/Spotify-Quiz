@@ -92,6 +92,22 @@ export function Question(props) {
     }
 
 
+    function share() {
+        let text = `I got ${score} points on SpotifyQuiz! Can you beat me?`;
+        if (navigator.canShare) {
+            navigator.share({
+                title: 'SpotifyQuiz',
+                text: text,
+                url: 'https://spotifyquiz.rikdewit.nl',
+            })
+                .then(() => console.log('Successful share'))
+                .catch((error) => console.log('Error sharing', error));
+        } else {
+            // var promise = navigator.clipboard.writeText(text).then(alert("copied text to clipboard!")).catch((err) => console.log(err))
+        }
+    }
+
+
     return (
         <div className="Question">
             { !props.end ?
@@ -175,6 +191,7 @@ export function Question(props) {
                 : <div className="card flexCenterColumn">
                     <h2>Your score</h2>
                     <h1>{score}</h1>
+                    {navigator.canShare ? <button className="Spotify" onClick={share}>Share</button> : null}
                     <button className="Spotify" onClick={playAgain}>Play Again</button>
                 </div>
 
