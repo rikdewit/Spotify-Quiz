@@ -152,6 +152,7 @@ h1{
 
 .Spotify:hover{
     background-color:#1ed760;
+    cursor: pointer;
 }
 
 .Spotify:active{
@@ -180,11 +181,11 @@ a.Spotify, a.Spotify:hover, a.Spotify:focus, a.Spotify:active {
 }
 
 .Tikkie:hover{
-    background-color: var(--primary-hover)
+    background-color: var(--primary-hover);
 }
 
 .Tikkie:active{
-    background-color: var(--primary-active)
+    background-color: var(--primary-active);
 }
 
 .Tikkie:focus{
