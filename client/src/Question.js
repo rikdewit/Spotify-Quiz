@@ -120,7 +120,7 @@ export function Question(props) {
                                 <br />
                                 {progress == 0 ?
                                     <div className="TrackInfo">
-                                        <img className="Cover" src={props.track.image}></img>
+                                        <img className="Cover" src={props.track.image} width="300" height="300"></img>
                                         <h2 className="Title">{props.track.name}</h2>
                                         <h2 className="Artist">{props.track.artist}</h2>
                                         <h2 className="Year">{props.track.release_year}</h2>
