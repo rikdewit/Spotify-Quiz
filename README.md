@@ -62,14 +62,16 @@ npm run serve
 - [ ] Add Play button to replay guessed song
 - [ ] Fix lock in without picking date
 - [x] Add donate button
-- [ ] Add highscore board
+- [x] Add highscore board
 - [ ] Add Score explanation
 - [ ] Bigger Year input
 - [ ] Fix less than 10 songs bug
 - [ ] Fix fast next timer bug
-- [ ] Add share button
+- [x] Add share button
 - [x] Tikkie
 - [ ] BuyCoffee button styling hover active
+- [ ] Mailing list
+- [ ] Feedback form
 ### Far
 - [ ] Add styling
 - [ ] Usability tweaks
