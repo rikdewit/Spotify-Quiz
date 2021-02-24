@@ -62,7 +62,7 @@ export function Quiz(props) {
         const highScoresRef = firestore.collection('Highscores');
         await highScoresRef.add({
             id: user.id,
-            name: "aksdjflajsdfasdfkljasdflkdasflkjdfaskljdslasdfjl",//user.display_name,
+            name: user.display_name,
             score: score,
             timeStamp: firebase.firestore.FieldValue.serverTimestamp()
         })
