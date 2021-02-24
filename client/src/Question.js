@@ -4,6 +4,7 @@ import QuestionInput from './QuestionInput'
 import { LinearProgress } from '@material-ui/core'
 import { DateTime } from 'luxon'
 import BuyCoffee from './BuyCoffee'
+import Highscores from './Highscores'
 
 
 export function Question(props) {
@@ -38,7 +39,6 @@ export function Question(props) {
 
     useEffect(() => {
         if (started && !paused) {
-            console.log(timer)
             setProgress(timer);
             if (timer > 0) {
                 setTimeout(() => {
@@ -158,7 +158,7 @@ export function Question(props) {
 
                                 {lockedIn ?
                                     <button className="Spotify" onClick={() => {
-                                        props.newQuestion();
+                                        props.newQuestion(score);
                                         setCurrentPoints(0);
                                         setProgress(timeAllowed);
                                         setGuess(inputValue);
@@ -193,6 +193,11 @@ export function Question(props) {
                     <h1>{score}</h1>
                     {navigator.canShare ? <button className="Spotify" onClick={share}>Share</button> : null}
                     <button className="Spotify" onClick={playAgain}>Play Again</button>
+                    <br></br>
+                    <br></br>
+
+
+                    <Highscores />
                 </div>
 
             }
