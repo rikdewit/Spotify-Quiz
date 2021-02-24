@@ -1,3 +1,5 @@
+import { DateTime } from 'luxon';
+
 export default function getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -7,3 +9,26 @@ export default function getHashParams() {
     }
     return hashParams;
 }
+
+
+
+const units = [
+    'year',
+    'month',
+    'week',
+    'day',
+    'hour',
+    'minute',
+    'second',
+];
+
+export function timeAgo(seconds) {
+    let dateTime = DateTime.fromSeconds(seconds)
+    const diff = dateTime.diffNow().shiftTo(...units);
+    const unit = units.find((unit) => diff.get(unit) !== 0) || 'second';
+
+    const relativeFormatter = new Intl.RelativeTimeFormat('en', {
+        numeric: 'auto',
+    });
+    return relativeFormatter.format(Math.trunc(diff.as(unit)), unit);
+};

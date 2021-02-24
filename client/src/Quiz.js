@@ -5,6 +5,9 @@ import { Question } from './Question'
 import { AudioPlayer } from './AudioPlayer'
 import BuyCoffee from './BuyCoffee'
 import Tikkie from './Tikkie'
+import firestore from './services/firebase';
+import firebase from 'firebase/app';
+import { useCollectionData } from 'react-firebase-hooks/firestore';
 
 
 export function Quiz(props) {
@@ -43,15 +46,26 @@ export function Quiz(props) {
 
     }, [user, accessToken]);
 
-    function newQuestion() {
+    function newQuestion(score) {
         if (questionN + 1 < tracks.length) {
             setTrack(tracks[questionN + 1]);
             setQuestionN(questionN + 1);
             play(questionN + 1)
 
         } else {
+            postHighscore(score);
             setEnd(true);
         }
+    }
+
+    async function postHighscore(score) {
+        const highScoresRef = firestore.collection('Highscores');
+        await highScoresRef.add({
+            id: user.id,
+            name: "aksdjflajsdfasdfkljasdflkdasflkjdfaskljdslasdfjl",//user.display_name,
+            score: score,
+            timeStamp: firebase.firestore.FieldValue.serverTimestamp()
+        })
     }
 
     function mute() {
