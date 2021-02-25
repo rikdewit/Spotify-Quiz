@@ -185,6 +185,9 @@ export function Question(props) {
                         <div className="card flexCenterColumn">
                             <h1>Guess the release year of the song</h1>
                             <button className="Spotify start" onClick={() => { props.start(); setStarted(true); }}>Start</button>
+                            <br />
+                            <br />
+                            <Highscores />
                         </div>
                     }
                 </div>
