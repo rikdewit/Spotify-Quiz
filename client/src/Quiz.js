@@ -17,13 +17,13 @@ export function Quiz(props) {
     const [questionN, setQuestionN] = useState(0);
     const [track, setTrack] = useState();
     const [end, setEnd] = useState(false);
+    const [playing, setPlaying] = useState(false);
     const [started, setStarted] = useState(false);
     let muteState = false;
     if ('REACT_APP_MUTED' in process.env) {
         muteState = process.env.REACT_APP_MUTED == 'true';
     }
     const [muted, setMuted] = useState(muteState);
-
     const [audios, setAudios] = useState([]);
 
     useEffect(() => {
@@ -34,6 +34,9 @@ export function Quiz(props) {
             let sounds = [];
             for (const t of trackInfo) {
                 let s = new Audio(t.preview_url);
+                s.addEventListener('ended', () => {
+                    playedOut();
+                })
                 if (muted) {
                     s.volume = 0;
                 } else {
@@ -54,6 +57,7 @@ export function Quiz(props) {
             play(questionN + 1)
 
         } else {
+            pause(questionN);
             postHighscore(score);
             setEnd(true);
         }
@@ -71,7 +75,6 @@ export function Quiz(props) {
 
     function mute() {
         setMuted(true);
-        console.log("mute")
         for (const audio of audios) {
             audio.volume = 0;
         }
@@ -85,6 +88,7 @@ export function Quiz(props) {
     }
 
     function play(n) {
+        setPlaying(true);
         for (const audio of audios) {
             audio.pause();
         }
@@ -93,7 +97,22 @@ export function Quiz(props) {
         } else {
             audios[questionN].play();
         }
+    }
 
+    function pause(n) {
+        setPlaying(false);
+        audios[n].pause();
+    }
+
+    function replay(n) {
+        let audio = audios[n];
+        audio.pause();
+        audio.currentTime = 0;
+        play(n);
+    }
+
+    function playedOut() {
+        setPlaying(false);
     }
 
     function start() {
@@ -107,7 +126,23 @@ export function Quiz(props) {
 
     return (
         <div>
-            {track ? <Question end={end} number={questionN} totalNumber={tracks.length} track={track} newQuestion={newQuestion} start={start} mute={mute} unMute={unMute} muted={muted} /> : "No track"}
+            {track ? <Question
+                end={end}
+                number={questionN}
+                totalNumber={tracks.length}
+                track={track}
+                newQuestion={newQuestion}
+                start={start}
+                mute={mute}
+                unMute={unMute}
+                muted={muted}
+                play={play}
+                replay={replay}
+                pause={pause}
+                playing={playing}
+                playedOut={playedOut} />
+                : "No track"}
+
             <div className="card Bottom flexCenterColumn">
 
                 <h3 className="Username">
