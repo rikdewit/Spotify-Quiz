@@ -71,13 +71,14 @@ npm run serve
 - [x] Tikkie
 - [ ] BuyCoffee button styling hover active
 - [ ] Mailing list
-- [ ] Feedback form
+- [x] Feedback form
+- [ ] Integrate login with firebase auth
+- [ ] Remove highscores of same person
+- [ ] Making the site a PWA
+- [ ] Save this song or this playlist
 ### Far
-- [ ] Add styling
-- [ ] Usability tweaks
-- [x] Deploy
 - [ ] Add multiplayer
-
+- [ ] Add challenges
 
 
 
