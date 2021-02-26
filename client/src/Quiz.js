@@ -5,6 +5,7 @@ import { Question } from './Question'
 import { AudioPlayer } from './AudioPlayer'
 import BuyCoffee from './BuyCoffee'
 import Tikkie from './Tikkie'
+import FeedbackForm from './FeedbackForm'
 import firestore from './services/firebase';
 import firebase from 'firebase/app';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -112,9 +113,11 @@ export function Quiz(props) {
                 <h3 className="Username">
                     {user ? user.display_name : "Login error"}
                 </h3>
+                <FeedbackForm />
+                <br />
                 <BuyCoffee />
                 <Tikkie />
-
+                <br />
             </div>
         </div>
 

@@ -3,6 +3,7 @@ html body{
     --primary-hover: #1ed760;
     --primary-active: #1aa34a;
     --secondary: #191414;
+    --close: rgb(116, 110, 110); 
     background-color: white;
     color: #191414;
     display: flex;
@@ -215,4 +216,40 @@ a.Spotify, a.Spotify:hover, a.Spotify:focus, a.Spotify:active {
 .Tikkie:focus{
     outline: 0;
     background-color: var(--primary-active);
+}
+
+.ModalButtonContainer{
+    text-align: end;
+}
+
+.SecondaryButton{
+    background-color: white;
+    box-shadow: none;
+    border-color: var(--close);
+    border-width: 2px;
+    color: var(--close);
+    border-style: solid;
+
+}
+
+.SecondaryButton:hover{
+    color: white;
+    background-color: var(--close);
+}
+
+.SecondaryButton:focus{
+    color: var(--secondary);
+    background-color: white;
+    border-color: var(--secondary);
+}
+
+.SecondaryButton:active{
+    color: white;
+    border-color: var(--secondary);
+    background-color: var(--secondary);
+}
+
+.FeedbackThanks{
+    text-align: center;
+    font-weight: 500;
 }

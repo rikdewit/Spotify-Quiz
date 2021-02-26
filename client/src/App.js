@@ -39,12 +39,15 @@ function App() {
         main: '#1db954',
       },
       secondary: {
-        // main: '#ffff',
         main: '#191414',
-
-
       }
-    }
+    },
+    typography: {
+      fontFamily: [
+        '-apple-system',
+        "Segoe UI",
+      ]
+    },
   });
   return (
 
