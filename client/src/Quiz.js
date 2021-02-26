@@ -128,7 +128,7 @@ export function Quiz(props) {
         <div>
             {track ? <Question
                 end={end}
-                number={questionN}
+                questionN={questionN}
                 totalNumber={tracks.length}
                 track={track}
                 newQuestion={newQuestion}

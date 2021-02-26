@@ -26,7 +26,7 @@ export function Question(props) {
         if (started) {
             startTimer();
         }
-    }, [props.number, started]);
+    }, [props.questionN, started]);
 
     function startTimer() {
         setPaused(false);
@@ -119,7 +119,7 @@ export function Question(props) {
                                             <h2 className="Title">{props.track.name}</h2>
                                             <h2 className="Artist">{props.track.artist}</h2>
                                             <h2 className="Year">{props.track.release_year}</h2>
-                                            <ReplayButton play={props.play} pause={props.pause} replay={props.replay} questionN={props.number} progress={progress} playing={props.playing} />
+                                            <ReplayButton play={props.play} pause={props.pause} replay={props.replay} questionN={props.questionN} progress={progress} playing={props.playing} />
                                         </div>
                                     </div>
                                     :
@@ -143,7 +143,7 @@ export function Question(props) {
                                     </div>
                                 }
                                 < br />
-                                <h3 className="SongNumber">Song {props.number + 1}/{props.totalNumber}</h3>
+                                <h3 className="SongNumber">Song {props.questionN + 1}/{props.totalNumber}</h3>
                                 <LinearProgress
                                     color="primary"
                                     variant="determinate"
@@ -160,7 +160,7 @@ export function Question(props) {
                                         setProgress(timeAllowed);
                                         setGuess(inputValue);
                                         setLockedIn(false);
-                                    }}>next</button>
+                                    }}>{props.questionN < 9 ? "next" : "results"}</button>
                                     :
                                     <button className="Spotify" onClick={() => {
                                         lockIn();
