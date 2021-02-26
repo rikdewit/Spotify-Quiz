@@ -45,8 +45,16 @@ function App() {
     typography: {
       fontFamily: [
         '-apple-system',
-        "Segoe UI",
-      ]
+        'BlinkMacSystemFont',
+        '"Segoe UI"',
+        'Roboto',
+        '"Helvetica Neue"',
+        'Arial',
+        'sans-serif',
+        '"Apple Color Emoji"',
+        '"Segoe UI Emoji"',
+        '"Segoe UI Symbol"',
+      ].join(','),
     },
   });
   return (
