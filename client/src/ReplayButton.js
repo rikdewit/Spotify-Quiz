@@ -19,15 +19,15 @@ export default function ReplayButton(props) {
                 props.playing ?
 
                     <div>
-                        < button className="ReplayButton Spotify" onClick={handlePause} >
+                        <button className="ReplayButton Spotify" onClick={handlePause} >
                             <FontAwesomeIcon icon={faStop} />
-                        </button >
-                    </div >
+                        </button>
+                    </div>
                     :
                     <div>
-                        < button className="ReplayButton Spotify" onClick={handleReplay} >
+                        <button className="ReplayButton Spotify" onClick={handleReplay} >
                             <FontAwesomeIcon icon={faRedo} />
-                        </button >
+                        </button>
                     </div>
             }
         </div>
