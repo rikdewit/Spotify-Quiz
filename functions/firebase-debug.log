@@ -22,7 +22,7 @@
 [info] 
 [info] === Deploying to 'spotifyquiz-5b7ad'...
 [info] 
-[info] i  deploying functions 
+[info] i  deploying functions dafs
 [info] Running command: npm --prefix "$RESOURCE_DIR" run build
 [info] ✔  functions: Finished running predeploy script. 
 [info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
