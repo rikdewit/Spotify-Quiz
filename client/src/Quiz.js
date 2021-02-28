@@ -60,7 +60,7 @@ export function Quiz(props) {
     }
 
     async function postHighscore(score) {
-        const highScoresRef = firestore.collection('Highscores');
+        const highScoresRef = firestore.collection('Scores');
         await highScoresRef.add({
             id: user.id,
             name: user.display_name,
