@@ -3,14 +3,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import QuestionInput from './QuestionInput'
 import { LinearProgress } from '@material-ui/core'
 import { DateTime } from 'luxon'
-import BuyCoffee from './BuyCoffee'
+import ReplayButton from './ReplayButton'
 import Highscores from './Highscores'
 
 
 export function Question(props) {
     const { user, accessToken, refreshToken } = useContext(UserContext);
     const [started, setStarted] = useState(false);
-    const [playing, setPlaying] = useState(false);
     const [audio, setAudio] = useState();
     const [score, setScore] = useState(0);
     const [currentPoints, setCurrentPoints] = useState(0);
@@ -27,7 +26,7 @@ export function Question(props) {
         if (started) {
             startTimer();
         }
-    }, [props.number, started]);
+    }, [props.questionN, started]);
 
     function startTimer() {
         setPaused(false);
@@ -66,20 +65,16 @@ export function Question(props) {
             setScore(score + currentPoints);
             setLockedIn(true);
             setPaused(true);
-            console.log("locked in")
         }
 
     }
     function handleSubmit(change) {
         let value = change.year;
         setInputValue(change)
-        console.log(change)
         let points = Math.max(0, 10 - Math.abs(value - parseInt(props.track.release_year)));
         if (progress > 0) {
             setGuess(value);
             setCurrentPoints(points);
-            console.log("you got " + points.toString() + " points!")
-
         } else {
             alert("too late!");
         }
@@ -107,7 +102,6 @@ export function Question(props) {
         }
     }
 
-
     return (
         <div className="Question">
             { !props.end ?
@@ -119,11 +113,14 @@ export function Question(props) {
                                 <br />
                                 <br />
                                 {progress == 0 ?
-                                    <div className="TrackInfo">
-                                        <img className="Cover" src={props.track.image} width="300" height="300"></img>
-                                        <h2 className="Title">{props.track.name}</h2>
-                                        <h2 className="Artist">{props.track.artist}</h2>
-                                        <h2 className="Year">{props.track.release_year}</h2>
+                                    <div>
+                                        <div className="TrackInfo">
+                                            <img className="Cover" src={props.track.image} width="300" height="300"></img>
+                                            <h2 className="Title">{props.track.name}</h2>
+                                            <h2 className="Artist">{props.track.artist}</h2>
+                                            <h2 className="Year">{props.track.release_year}</h2>
+                                            <ReplayButton play={props.play} pause={props.pause} replay={props.replay} questionN={props.questionN} progress={progress} playing={props.playing} />
+                                        </div>
                                     </div>
                                     :
                                     <div className="TrackInfo">
@@ -146,7 +143,7 @@ export function Question(props) {
                                     </div>
                                 }
                                 < br />
-                                <h3 className="SongNumber">Song {props.number + 1}/{props.totalNumber}</h3>
+                                <h3 className="SongNumber">Song {props.questionN + 1}/{props.totalNumber}</h3>
                                 <LinearProgress
                                     color="primary"
                                     variant="determinate"
@@ -163,7 +160,7 @@ export function Question(props) {
                                         setProgress(timeAllowed);
                                         setGuess(inputValue);
                                         setLockedIn(false);
-                                    }}>next</button>
+                                    }}>{props.questionN < 9 ? "next" : "results"}</button>
                                     :
                                     <button className="Spotify" onClick={() => {
                                         lockIn();
