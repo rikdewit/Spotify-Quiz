@@ -11,8 +11,7 @@ export const highScores = functions.firestore
     console.log(newScoreData.score);
     return db.runTransaction(async (t) => { 
         const highScoreRef = db.collection("Highscores").orderBy("score", "asc");
-        const highScoreSnap = await t.get(highScoreRef.limit(10));
-        const allHighScores = await t.get(highScoreRef);
+        const highScoreSnap = await t.get(highScoreRef);
 
 
         const addScore = () =>{
@@ -21,7 +20,7 @@ export const highScores = functions.firestore
         }
 
         const removeOwnScore = () => {
-            allHighScores.forEach((score)=>{
+            highScoreSnap.forEach((score)=>{
                 let scoreData = score.data();
                 if (scoreData.id == newScoreData.id){
                     t.delete(score.ref);
@@ -30,10 +29,10 @@ export const highScores = functions.firestore
         }
 
         const removeLowScores = () =>{
-            const oversize = allHighScores.size - 10;
-            console.log(allHighScores.size);
+            const oversize = highScoreSnap.size - 10;
+            console.log(highScoreSnap.size);
             let index = 0;
-            allHighScores.forEach((score)=>{
+            highScoreSnap.forEach((score)=>{
                 if(index <= oversize){
                     t.delete(score.ref);
                 }
@@ -55,7 +54,7 @@ export const highScores = functions.firestore
         console.log(beatOwnScore, "beatownscore")
 
         // If the highscorelist is not filled, put the score in if you beat your own
-        if(allHighScores.size < 10 ){
+        if(highScoreSnap.size < 10 ){
             if(!selfInHighScore){
                 addScore();
             }else{
