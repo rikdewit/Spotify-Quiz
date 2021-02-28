@@ -73,9 +73,11 @@ npm run serve
 - [ ] Mailing list
 - [x] Feedback form
 - [ ] Integrate login with firebase auth
-- [ ] Remove highscores of same person
+- [x] Remove highscores of same person
 - [ ] Making the site a PWA
 - [ ] Save this song or this playlist
+- [ ] Reduce page shifting on load
+- [ ] Add loading animations
 ### Far
 - [ ] Add multiplayer
 - [ ] Add challenges
