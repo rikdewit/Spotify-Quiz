@@ -78,6 +78,7 @@ npm run serve
 - [ ] Save this song or this playlist
 - [ ] Reduce page shifting on load
 - [ ] Add loading animations
+- [ ] Add donators list and badge
 ### Far
 - [ ] Add multiplayer
 - [ ] Add challenges
