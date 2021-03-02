@@ -141,7 +141,11 @@ export function Quiz(props) {
                 pause={pause}
                 playing={playing}
                 playedOut={playedOut} />
-                : "No track"}
+                :
+                <div className="card">
+                    loading tracks
+                </div>
+            }
 
             <div className="card Bottom flexCenterColumn">
 
