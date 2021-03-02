@@ -9,6 +9,7 @@
 require('dotenv').config()
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
+var fetch = require('node-fetch');
 var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
@@ -18,7 +19,15 @@ var cookieParser = require('cookie-parser');
 var client_id = process.env.CLIENT_ID; // Your client id
 var client_secret = process.env.CLIENT_SECRET; // Your secret
 var redirect_uri = process.env.REDIRECT_URI; // Your redirect uri
-var client_root_url = process.env.CLIENT_ROOT_URL
+var client_root_url = process.env.CLIENT_ROOT_URL;
+
+var serviceAccount = require("./service-account.json");
+var admin = require('firebase-admin');
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+
 /**
  * Generates a random string containing numbers and letters
  * @param  {number} length The length of the string
@@ -88,9 +97,8 @@ app.get('/callback', function (req, res) {
       json: true
     };
 
-    request.post(authOptions, function (error, response, body) {
+    request.post(authOptions, async function (error, response, body) {
       if (!error && response.statusCode === 200) {
-
         var access_token = body.access_token,
           refresh_token = body.refresh_token;
 
@@ -100,17 +108,30 @@ app.get('/callback', function (req, res) {
           json: true
         };
 
-        // use the access token to access the Spotify Web API
-        request.get(options, function (error, response, body) {
-          console.log(body);
-        });
+        const uid = await fetch(options.url, {
+          headers: options.headers,
+        })
+          .then(res => res.json())
+          .then(json => json.id);
+
+
+
+        // Create a Firebase custom auth token.
+        const firebaseToken = await admin.auth().createCustomToken(uid).then((customToken) => {
+          return customToken
+        })
+          .catch((error) => {
+            console.log('Error creating custom token:', error);
+          });
 
         // we can also pass the token to the browser to make requests from there
         res.redirect(`${client_root_url}/#` +
           querystring.stringify({
             access_token: access_token,
-            refresh_token: refresh_token
+            refresh_token: refresh_token,
+            firebase_token: firebaseToken
           }));
+
       } else {
         res.redirect(`${client_root_url}/#` +
           querystring.stringify({
