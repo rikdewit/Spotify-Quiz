@@ -8,14 +8,18 @@ import LuxonUtils from '@date-io/luxon';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import firebase from 'firebase/app';
 import "firebase/auth";
+import { useAuthState } from 'react-firebase-hooks/auth';
+
 
 export const UserContext = React.createContext({ user: {}, accessToken: {}, refreshToken: {} });
+let auth = firebase.auth();
 
 function App() {
   const [accessToken, setAccessToken] = useState();
   const [refreshToken, setRefreshToken] = useState();
   const [firebaseToken, setFirebaseToken] = useState();
   const [user, setUser] = useState();
+  const [firebaseUser] = useAuthState(auth);
 
   useEffect(() => {
     let params = getHashParams();
@@ -32,7 +36,7 @@ function App() {
             console.log(userData);
             setUser(userData);
 
-            firebase.auth().signInWithCustomToken(firebaseToken)
+            auth.signInWithCustomToken(firebaseToken)
               .then((userCredential) => {
                 // Signed in
                 var user = userCredential.user;
@@ -94,7 +98,7 @@ function App() {
             <img className="SpotifyLogo" src="/img/Spotify_Icon_RGB_Green.png"></img>
             <h1 className="TopTitle" >SpotifyQuiz</h1>
           </div>
-          <UserContext.Provider value={{ user: user, accessToken: accessToken, refreshToken: refreshToken }}>
+          <UserContext.Provider value={{ user: user, firebaseUser: firebaseUser, accessToken: accessToken, refreshToken: refreshToken }}>
             {!user ? <LoginButton /> : <Quiz />}
           </UserContext.Provider>
         </MuiPickersUtilsProvider>
