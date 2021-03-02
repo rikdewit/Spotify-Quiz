@@ -11,6 +11,7 @@ CLIENT_SECRET = {insert client secret here}
 REDIRECT_URI = http://localhost:8888/callback
 CLIENT_ROOT_URL= http://localhost:3000
 PORT = 8888
+GOOGLE_APPLICATION_CREDENTIALS="./service-account-file.json"
 ```
 
 Make a .env file in the client directory containing:
@@ -19,6 +20,7 @@ Make a .env file in the client directory containing:
 REACT_APP_BACKEND = http://localhost:8888
 PORT = 3000
 ```
+Get service-account.json file from firebase console and put it in the root directory.
 
 The frontend and backend are run in seperate shell instances
 ```
