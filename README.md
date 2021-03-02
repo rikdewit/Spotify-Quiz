@@ -74,7 +74,7 @@ npm run serve
 - [ ] BuyCoffee button styling hover active
 - [ ] Mailing list
 - [x] Feedback form
-- [ ] Integrate login with firebase auth
+- [x] Integrate login with firebase auth
 - [x] Remove highscores of same person
 - [ ] Making the site a PWA
 - [ ] Save this song or this playlist
