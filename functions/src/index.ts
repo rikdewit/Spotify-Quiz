@@ -5,8 +5,7 @@ const db = admin.firestore();
 
 export const highScores = functions.region("europe-west1").firestore
     .document('Scores/{scoreId}')
-    .onCreate(async (snapshot, context) => {
-
+    .onCreate(async (snapshot, context) => { 
         const newScoreData = snapshot.data();
         console.log(newScoreData.score);
         return db.runTransaction(async (t) => {
@@ -14,7 +13,7 @@ export const highScores = functions.region("europe-west1").firestore
             const highScoreSnap = await t.get(highScoreRef);
 
             const isDonator = async () => {
-                const users = db.collection("Users").doc("rik");
+                const users = db.collection("Users").doc(newScoreData.id);
                 let user = null;
                 try {
                     user = await t.get(users);
@@ -37,15 +36,6 @@ export const highScores = functions.region("europe-west1").firestore
                 t.set(highScores, { score: newScoreData.score, name: newScoreData.name, timeStamp: newScoreData.timeStamp, donator: donator });
             }
 
-            // const removeOwnScore = () => {
-            //     highScoreSnap.forEach((score) => {
-            //         let scoreData = score.data();
-            //         if (scoreData.id == newScoreData.id) {
-            //             t.delete(score.ref);
-            //         }
-            //     });
-            // }
-
             const removeLowScores = () => {
                 const oversize = highScoreSnap.size - 10;
                 console.log(highScoreSnap.size);
@@ -57,12 +47,14 @@ export const highScores = functions.region("europe-west1").firestore
                     index++;
                 });
             }
+            
 
             let selfInHighScore = false;
             let beatOwnScore = true;
             highScoreSnap.forEach((score) => {
                 let scoreData = score.data();
-                if (scoreData.id == newScoreData.id) {
+                console.log(scoreData);
+                if (score.id == newScoreData.id) {
                     selfInHighScore = true;
                     if (newScoreData.score <= scoreData.score)
                         beatOwnScore = false;
@@ -136,7 +128,7 @@ export const donatorUpdate = functions.region("europe-west1").firestore
                 const highScore = await db.collection('Highscores').doc(uid);
 
                 return highScore?.update({ donator: donator }).then(writeResult => {
-                    console.log('Added default donator property to user', writeResult);
+                    console.log('updated donator on highscoreslist', writeResult);
 
                 }).catch(err => {
                     console.log(err);

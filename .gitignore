@@ -4,3 +4,4 @@ functions/service-account.json
 functions/firebase-debug.log
 service-account.json
 .DS_Store
+**/*.log

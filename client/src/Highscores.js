@@ -29,7 +29,7 @@ export default function Highscores(props) {
                     {scores && scores.map((score, index) =>
                         <tr key={score.id}>
                             <td>{index + 1} </td>
-                            <td className="NameRow"><FontAwesomeIcon icon={faDollarSign} /> {score.name}</td>
+                            <td className="NameRow">{score.donator ? <FontAwesomeIcon icon={faDollarSign} /> : null} {score.name}</td>
                             <td>{score.score}</td>
                             <td className="TimeStamp">{score.timeStamp ? timeAgo(score.timeStamp.seconds) : null}</td>
                         </tr>
