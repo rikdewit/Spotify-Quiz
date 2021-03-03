@@ -147,6 +147,14 @@ h1{
     font-weight: 500;
 }
 
+@media screen and (max-width: 480px){
+    .HighscoresTable{
+        font-size: 1rem;
+    }
+}
+
+
+
 .NameRow{
     padding-left: 20px; 
     padding-right: 20px;
