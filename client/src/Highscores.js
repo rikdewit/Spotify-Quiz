@@ -3,6 +3,8 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useEffect } from 'react';
 import { timeAgo } from './services/utils'
 import Table from '@material-ui/core/Table'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCrown, faDollarSign } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Highscores(props) {
@@ -15,6 +17,7 @@ export default function Highscores(props) {
     return (
         <div className="HighscoresContainer">
             <h1>Highscores</h1>
+
             <table className="HighscoresTable">
                 <colgroup>
                     <col width="4%" />
@@ -23,7 +26,16 @@ export default function Highscores(props) {
                     <col width="20%" />
                 </colgroup>
                 <tbody>
-                    {scores && scores.map((score, index) => <tr key={score.id}><td>{index + 1}</td><td className="NameRow">{score.name}</td> <td>{score.score}</td><td className="TimeStamp">{score.timeStamp ? timeAgo(score.timeStamp.seconds) : null}</td></tr>)}
+                    {scores && scores.map((score, index) =>
+                        <tr key={score.id}>
+                            <td>{index + 1} </td>
+                            <td className="NameRow"><FontAwesomeIcon icon={faDollarSign} /> {score.name}</td>
+                            <td>{score.score}</td>
+                            <td className="TimeStamp">{score.timeStamp ? timeAgo(score.timeStamp.seconds) : null}</td>
+                        </tr>
+                    )}
+
+
                 </tbody>
             </table>
 
