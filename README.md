@@ -81,6 +81,7 @@ npm run serve
 - [ ] Reduce page shifting on load
 - [ ] Add loading animations
 - [ ] Add donators list and badge
+- [x] Wait for uploading highscore before going to results page
 ### Far
 - [ ] Add multiplayer
 - [ ] Add challenges

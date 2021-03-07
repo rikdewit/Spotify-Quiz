@@ -50,7 +50,7 @@ export function Quiz(props) {
 
     }, [user, accessToken]);
 
-    function newQuestion(score) {
+    async function newQuestion(score) {
         if (questionN + 1 < tracks.length) {
             setTrack(tracks[questionN + 1]);
             setQuestionN(questionN + 1);
@@ -58,7 +58,7 @@ export function Quiz(props) {
 
         } else {
             pause(questionN);
-            postHighscore(score);
+            await postHighscore(score);
             setEnd(true);
         }
     }
