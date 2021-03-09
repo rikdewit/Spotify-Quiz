@@ -3,14 +3,9 @@
     "name": "Spotify Quiz. Guess the release year of songs",
     "icons": [
       {
-        "src": "/images/icons-192.png",
+        "src": "/img/Spotify_Icon_RGB_Green.png",
         "type": "image/png",
-        "sizes": "192x192"
-      },
-      {
-        "src": "/images/icons-512.png",
-        "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "709x709"
       }
     ],
     "start_url": "/",
@@ -21,15 +16,6 @@
 
     "description": "Spotify Quiz. Guess the release year of songs and get to the top of the leaderboard.",
     "screenshots": [
-      {
-        "src": "/images/screenshot1.png",
-        "type": "image/png",
-        "sizes": "540x720"
-      },
-      {
-        "src": "/images/screenshot2.jpg",
-        "type": "image/jpg",
-        "sizes": "540x720"
-      }
+
     ]
   }
