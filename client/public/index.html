@@ -3,7 +3,8 @@
 
 <head>
   <title>Spotify Quiz</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="manifest" href="/manifest.json">
+  <!-- <link rel="stylesheet" href="style.css"> -->
 
   <meta name="viewport"
     content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, user-scalable=yes, minimal-ui">
@@ -13,6 +14,16 @@
   <meta property="og:description" content="Guess the release year of your favorite songs, how many can you get right?">
   <meta property="og:type" content="website">
 
+  <!-- <script>
+    // Check that service workers are supported
+    if ('serviceWorker' in navigator) {
+      // Use the window load event to keep the page load performant
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js');
+      });
+    }
+    </script> -->
+    
 </head>
 
 <body>

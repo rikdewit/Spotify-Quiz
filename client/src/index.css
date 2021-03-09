@@ -5,7 +5,7 @@ html body{
     --secondary: #191414;
     --close: rgb(116, 110, 110); 
     background-color: white;
-    color: #191414;
+    color: var(--secondary);
     display: flex;
     justify-content: center;
     font-family: BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
