@@ -102,8 +102,8 @@ function App() {
       <MuiThemeProvider theme={theme}>
         <MuiPickersUtilsProvider utils={LuxonUtils}>
           <div className="card flexCenterRow TopBar">
-            <img width="80px" height="80px" className="SpotifyLogo" src="/img/Spotify_Icon_RGB_Green.png" alt="spotify logo green"></img>
-            <h1 className="TopTitle" >SpotifyQuiz</h1>
+            <img width="80px" height="80px" className="top2000Logo" src="/img/npo_radio2_top2000_logo.svg" alt="top 2000 logo"></img>
+            <h1 className="TopTitle" >Top 2000 quiz</h1>
           </div>
           <UserContext.Provider value={{ user: user, firebaseUser: firebaseUser, accessToken: accessToken, refreshToken: refreshToken }}>
             {!user ? <LoginButton /> : <Quiz />}
