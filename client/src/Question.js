@@ -88,7 +88,7 @@ export function Question(props) {
 
 
     function share() {
-        let text = `I got ${score} points on top200Quiz! Can you beat me?`;
+        let text = `Ik heb ${score} punten gescoord op top200Quiz! Kan je mij verslaan?`;
         if (navigator.canShare) {
             navigator.share({
                 title: 'SpotifyQuiz',
@@ -143,7 +143,7 @@ export function Question(props) {
                                     </div>
                                 }
                                 < br />
-                                <h3 className="SongNumber">Song {props.questionN + 1}/{props.totalNumber}</h3>
+                                <h3 className="SongNumber">Nummer {props.questionN + 1}/{props.totalNumber}</h3>
                                 <LinearProgress
                                     color="primary"
                                     variant="determinate"
@@ -160,12 +160,12 @@ export function Question(props) {
                                         setProgress(timeAllowed);
                                         setGuess(inputValue);
                                         setLockedIn(false);
-                                    }}>{props.questionN < 9 ? "next" : "results"}</button>
+                                    }}>{props.questionN < 9 ? "volgende" : "uitslag"}</button>
                                     :
                                     <button className="Spotify" onClick={() => {
                                         lockIn();
                                         setProgress(0);
-                                    }}>lock in</button>
+                                    }}>Raden</button>
                                 }
 
 
@@ -180,7 +180,7 @@ export function Question(props) {
                         </div>
                         :
                         <div className="card flexCenterColumn">
-                            <h1>Guess the release year of the song</h1>
+                            <h1>Raad wanneer de nummers zijn uitgebracht</h1>
                             <button className="Spotify start" onClick={() => { props.start(); setStarted(true); }}>Start</button>
                             <br />
                             <br />
@@ -189,10 +189,10 @@ export function Question(props) {
                     }
                 </div>
                 : <div className="card flexCenterColumn">
-                    <h2>Your score</h2>
+                    <h2>Jouw score</h2>
                     <h1>{score}</h1>
-                    {navigator.canShare ? <button className="Spotify SecondaryButton" onClick={share}>Share</button> : null}
-                    <button className="Spotify" onClick={playAgain}>Play Again</button>
+                    {navigator.canShare ? <button className="Spotify SecondaryButton" onClick={share}>Delen</button> : null}
+                    <button className="Spotify" onClick={playAgain}>Opnieuw spelen</button>
                     <br></br>
                     <br></br>
 

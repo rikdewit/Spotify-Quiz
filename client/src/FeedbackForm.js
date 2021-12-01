@@ -76,26 +76,26 @@ export default function FeedbackForm(props) {
 
     return (
         <div>
-            <button className="Spotify SecondaryButton" onClick={handleOpen}>Give Feedback</button>
+            <button className="Spotify SecondaryButton" onClick={handleOpen}>Geef feedback</button>
             <Dialog open={opened} onClose={handleClose}>
 
                 {!feedbackGiven ?
                     <div>
 
-                        <DialogTitle>Give feedback</DialogTitle>
+                        <DialogTitle >Geef feedback</DialogTitle>
 
                         <DialogContent>
                             <DialogContentText>
-                                I am working hard to add new features and improve the experience.
-                        <br />
-                        What do you think can be better?
+                                Ik werk hard om nieuwe features toe te voegen en de ervaring te verbeteren.
+                                <br />
+                                Wat is er goed en wat kan er nog beter?
 
-                    </DialogContentText>
+                            </DialogContentText>
                             <form onSubmit={postFeedback} >
                                 <TextField
                                     margin="normal"
                                     fullWidth
-                                    label="Name"
+                                    label="Naam"
                                     defaultValue={name}
                                     variant="outlined"
                                     onChange={handleChangeName}
@@ -123,22 +123,22 @@ export default function FeedbackForm(props) {
                                         color="primary"
                                     />
                                 }
-                                    label="Keep me updated about new features via email (max. one per month)"
+                                    label="Hou mij op de hoogte van nieuwe features via email"
                                 />
 
                             </form >
                             <div className="ModalButtonContainer">
-                                <button className="Spotify SecondaryButton" onClick={handleClose}>close</button>
-                                <button className="Spotify" onClick={postFeedback}>Submit</button>
+                                <button className="Spotify SecondaryButton" onClick={handleClose}>sluiten</button>
+                                <button className="Spotify" onClick={postFeedback}>Verstuur</button>
                             </div>
                         </DialogContent>
                     </div>
                     :
                     <div>
                         <DialogContent>
-                            <h2 className="FeedbackThanks">Thanks for your feedback!</h2>
+                            <h2 className="FeedbackThanks">Bedankt voor je feedback!</h2>
                             <div className="ModalButtonContainer">
-                                < button className="Spotify SecondaryButton" onClick={handleClose}>close</button>
+                                < button className="Spotify SecondaryButton" onClick={handleClose}>sluit</button>
                             </div>
                         </DialogContent>
                     </div>}

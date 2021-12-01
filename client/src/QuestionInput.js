@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { DatePicker } from '@material-ui/pickers';
+
 import { DateTime } from 'luxon'
 
 export default function QuestionInput(props) {
@@ -9,7 +10,7 @@ export default function QuestionInput(props) {
             <div className="Picker">
                 <DatePicker
                     color="primary"
-                    label="year"
+                    label="jaar"
                     views={["year"]}
                     value={props.val}
                     onChange={props.submit}

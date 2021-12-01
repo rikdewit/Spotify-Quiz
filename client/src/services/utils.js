@@ -27,7 +27,7 @@ export function timeAgo(seconds) {
     const diff = dateTime.diffNow().shiftTo(...units);
     const unit = units.find((unit) => diff.get(unit) !== 0) || 'second';
 
-    const relativeFormatter = new Intl.RelativeTimeFormat('en', {
+    const relativeFormatter = new Intl.RelativeTimeFormat('nl', {
         numeric: 'auto',
     });
     return relativeFormatter.format(Math.trunc(diff.as(unit)), unit);
