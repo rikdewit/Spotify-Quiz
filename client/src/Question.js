@@ -88,12 +88,12 @@ export function Question(props) {
 
 
     function share() {
-        let text = `I got ${score} points on SpotifyQuiz! Can you beat me?`;
+        let text = `I got ${score} points on top200Quiz! Can you beat me?`;
         if (navigator.canShare) {
             navigator.share({
                 title: 'SpotifyQuiz',
                 text: text,
-                url: 'https://spotifyquiz.rikdewit.nl',
+                url: window.location.origin,
             })
                 .then(() => console.log('Successful share'))
                 .catch((error) => console.log('Error sharing', error));
@@ -104,7 +104,7 @@ export function Question(props) {
 
     return (
         <div className="Question">
-            { !props.end ?
+            {!props.end ?
                 <div>
                     {started ?
                         <div>
@@ -191,7 +191,7 @@ export function Question(props) {
                 : <div className="card flexCenterColumn">
                     <h2>Your score</h2>
                     <h1>{score}</h1>
-                    {navigator.canShare ? <button className="Spotify" onClick={share}>Share</button> : null}
+                    {navigator.canShare ? <button className="Spotify SecondaryButton" onClick={share}>Share</button> : null}
                     <button className="Spotify" onClick={playAgain}>Play Again</button>
                     <br></br>
                     <br></br>
