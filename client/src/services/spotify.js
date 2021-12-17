@@ -71,7 +71,7 @@ export async function getTrackInfoTop2000(access_token, country,) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
     let offset = randInt(0, 1997 - 10);
-    let playlist = await getPlaylist(access_token, "1DTzz7Nh2rJBnyFbjsH1Mh", country, offset = offset);
+    let playlist = await getPlaylist(access_token, "1g73uXpPOOjlDS96OSTSO4", country, offset = offset);
     let tracks = playlist.items
     let info = getInfo(tracks);
     return info
@@ -88,6 +88,7 @@ function getInfo(tracks) {
             let artist = track.track.artists[0].name;
             let release_year = release_date.split("-")[0]
             let image = track.track.album.images[1].url
+            console.log(track);
 
             info.push({ "release_year": release_year, "release_date": release_date, "preview_url": preview_url, "name": name, "artist": artist, "image": image });
         }
