@@ -5,7 +5,7 @@ import { LinearProgress } from '@material-ui/core'
 import { DateTime } from 'luxon'
 import ReplayButton from './ReplayButton'
 import Highscores from './Highscores'
-
+import { YearIncorrectLink } from './YearIncorrectLink'
 
 export function Question(props) {
     const { user, accessToken, refreshToken } = useContext(UserContext);
@@ -120,6 +120,7 @@ export function Question(props) {
                                             <h2 className="Artist">{props.track.artist}</h2>
                                             <h2 className="Year">{props.track.release_year}</h2>
                                             <ReplayButton play={props.play} pause={props.pause} replay={props.replay} questionN={props.questionN} progress={progress} playing={props.playing} />
+                                            <YearIncorrectLink track={props.track}></YearIncorrectLink>
                                         </div>
                                     </div>
                                     :
