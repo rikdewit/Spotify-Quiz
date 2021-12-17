@@ -2,6 +2,7 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin"
 admin.initializeApp();
 const db = admin.firestore();
+db.settings({ ignoreUndefinedProperties: true })
 
 export const highScores = functions.region("europe-west1").firestore
     .document('Scores/{scoreId}')
@@ -125,9 +126,11 @@ export const donatorUpdate = functions.region("europe-west1").firestore
             try {
 
                 const donator = change.after.data().donator;
+                const badges = change.after.data().badges;
+                console.log(badges);
                 const highScore = await db.collection('Highscores').doc(uid);
 
-                return highScore?.update({ donator: donator }).then(writeResult => {
+                return highScore?.set({ donator: donator, badges:badges }, { merge:true}).then(writeResult => {
                     console.log('updated donator on highscoreslist', writeResult);
 
                 }).catch(err => {

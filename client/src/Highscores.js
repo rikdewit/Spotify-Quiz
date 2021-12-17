@@ -5,6 +5,7 @@ import { timeAgo } from './services/utils'
 import Table from '@material-ui/core/Table'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCrown, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { Badges } from './Badges';
 
 
 export default function Highscores(props) {
@@ -29,7 +30,11 @@ export default function Highscores(props) {
                     {scores && scores.map((score, index) =>
                         <tr key={score.id}>
                             <td>{index + 1} </td>
-                            <td className="NameRow">{score.donator ? <FontAwesomeIcon icon={faDollarSign} /> : null} {score.name}</td>
+                            <td className="NameRow">
+                                <Badges badges={score.badges} />
+                                <p className="donatorBadge"> {score.donator ? <FontAwesomeIcon icon={faDollarSign} /> : null} </p>
+                                <p className="scoreName"> {score.name} </p>
+                            </td>
                             <td>{score.score}</td>
                             <td className="TimeStamp">{score.timeStamp ? timeAgo(score.timeStamp.seconds) : null}</td>
                         </tr>

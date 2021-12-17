@@ -279,3 +279,47 @@ a.Spotify, a.Spotify:hover, a.Spotify:focus, a.Spotify:active {
     bottom: 0;
     transform: translate(120px,7px);
 }
+
+.scoreName{
+    margin-left: 1px;
+    display: inline;
+}
+
+.donatorBadge{
+    margin: 1px;
+}
+.seasonBadge, .donatorBadge{
+    display:inline-block;
+}
+
+.seasonBadge:hover::after, .donatorBadge:hover::after{
+    transform: translate(-2em, -2em);
+    display:inline-block;
+    position:absolute;
+    font-size: .8em;
+    color: white;
+    padding: .4em;
+    z-index: 1;
+    background-color: rgba(0,0,0, .8);
+    text-align: center;
+}
+
+.season1_1Badge:hover::after{
+    content:"Season 1 first place";
+}
+
+.season1_2Badge:hover::after{
+    content:"season 1 second place";
+}
+.season1_3Badge:hover::after{
+    content:"season 1 third place";
+}
+
+.season1Badge:hover::after{
+    content:"season 1 top 10";
+}
+
+.donatorBadge:hover::after{
+    content:"donator";
+}
+
