@@ -40,10 +40,11 @@ function App() {
             auth.signInWithCustomToken(firebaseToken)
               .then((userCredential) => {
                 const userRef = firestore.collection('Users').doc(userData.id);
+
                 userRef.set({
                   email: userData.email,
                   displayName: userData.display_name,
-                  badges: userData.badges
+
                 }, { merge: true }).catch(err => console.log(err))
 
                 // Signed in

@@ -6,6 +6,8 @@ import { AudioPlayer } from './AudioPlayer'
 import BuyCoffee from './BuyCoffee'
 import Tikkie from './Tikkie'
 import FeedbackForm from './FeedbackForm'
+import { BadgesUser } from './BadgesUser';
+
 import firestore from './services/firebase';
 import firebase from 'firebase/app';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -150,6 +152,10 @@ export function Quiz(props) {
             <div className="card Bottom flexCenterColumn">
 
                 <h3 className="Username">
+                    <span style={{ marginRight: ".5em" }} >
+                        <BadgesUser userId={user.id} />
+                    </span>
+
                     {user ? user.display_name : "Login error"}
                 </h3>
                 <FeedbackForm />
