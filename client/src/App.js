@@ -43,6 +43,7 @@ function App() {
                 userRef.set({
                   email: userData.email,
                   displayName: userData.display_name,
+                  badges: userData.badges
                 }, { merge: true }).catch(err => console.log(err))
 
                 // Signed in
