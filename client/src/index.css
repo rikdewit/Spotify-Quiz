@@ -290,6 +290,7 @@ a.Spotify, a.Spotify:hover, a.Spotify:focus, a.Spotify:active {
 }
 .seasonBadge, .donatorBadge{
     display:inline-block;
+    margin: 0;
 }
 
 .seasonBadge:hover::after, .donatorBadge:hover::after{
