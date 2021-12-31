@@ -5,14 +5,6 @@ import TagManager from 'react-gtm-module'
 import * as serviceWorkerRegistration from './serviceWorkerRegistration.js';
 import reportWebVitals from './reportWebVitals.js';
 
-if (process.env.NODE_ENV != 'development') {
-
-  const tagManagerArgs = {
-    gtmId: 'G-H120T7N92C'
-  }
-
-  TagManager.initialize(tagManagerArgs)
-}
 
 ReactDOM.render(<App />, document.querySelector('.container'));
 
